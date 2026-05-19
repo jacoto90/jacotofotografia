@@ -404,7 +404,6 @@
                                         <circle cx="12" cy="15.5" r="1.3" stroke-width="1.5"/>
                                         <path d="M12 15.5v1.5" stroke-width="1.5" stroke-linecap="round"/>
                                     </svg>
-                                    </svg>
                                 </div>
                             </div>
                         </div>
