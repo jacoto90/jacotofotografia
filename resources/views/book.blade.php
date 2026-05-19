@@ -57,15 +57,15 @@
     }
 
     function selectAll() {
-        document.querySelectorAll('input[name="selectedImages[]"]').forEach(cb => cb.checked = true);
+        document.querySelectorAll('input[name="selectedImages\\[\\]"]').forEach(cb => cb.checked = true);
     }
 
     function deselectAll() {
-        document.querySelectorAll('input[name="selectedImages[]"]').forEach(cb => cb.checked = false);
+        document.querySelectorAll('input[name="selectedImages\\[\\]"]').forEach(cb => cb.checked = false);
     }
 
     function validateAndDownload() {
-        const checked = document.querySelectorAll('input[name="selectedImages[]"]:checked');
+        const checked = document.querySelectorAll('input[name="selectedImages\\[\\]"]:checked');
         if (checked.length === 0) {
             alert('Por favor, selecciona al menos una foto para descargar.');
             return;
