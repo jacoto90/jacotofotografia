@@ -25,3 +25,25 @@ _ide_helper.php
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# Photos & assets (not tracked in git)
+/resources/oldweb/
+/public/noimage.jpg
+/public/carrusel*/
+/public/sant jordi 2025/
+/public/Begur/
+/public/Boda*/
+/public/Euskadi/
+/public/Evento*/
+/public/Ribes*/
+/public/Sesión*/
+
+# Site images (keep only logos and essential)
+/public/img/*.jpg
+/public/img/*.JPG
+/public/img/*.png
+/public/img/*.gif
+/public/img/*.ai
+!/public/img/logoJacoto.png
+!/public/img/logo_jacoto.png
+!/public/img/cookie.svg
