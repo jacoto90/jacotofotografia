@@ -62,6 +62,10 @@
         color: #FC9B67;
         line-height: 1;
     }
+    .stat-number span { display:inline-block; }
+    .stat-bounce { animation:statPop .4s cubic-bezier(.34,1.56,.64,1); }
+    @keyframes statPop { 0%{transform:scale(1)} 50%{transform:scale(1.25)} 100%{transform:scale(1)} }
+    .stat-plus { display:inline-block; }
     @media (max-width: 768px) {
         .stat-number { font-size: 2rem; }
         .hero-parallax { background-attachment: scroll; }
@@ -97,28 +101,93 @@
 </section>
 
 {{-- Stats --}}
-<section class="bg-[#4e5e72] py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+<section class="bg-[#4e5e72] py-16 sm:py-20 relative overflow-hidden" id="stats-section">
+    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iLjAyIj48Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSIxIi8+PC9nPjwvZz48L3N2Zz4=')] opacity-50"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-                <div class="stat-number">+5</div>
-                <p class="text-white/70 text-sm mt-2 uppercase tracking-wider">Años de experiencia</p>
+            <div class="stat-item">
+                <div class="stat-number" data-count="5" data-suffix="">+<span>0</span></div>
+                <p class="text-white/70 text-sm mt-3 uppercase tracking-wider font-medium">Años de experiencia</p>
             </div>
-            <div>
-                <div class="stat-number">+20</div>
-                <p class="text-white/70 text-sm mt-2 uppercase tracking-wider">Eventos capturados</p>
+            <div class="stat-item">
+                <div class="stat-number" data-count="20" data-suffix="">+<span>0</span></div>
+                <p class="text-white/70 text-sm mt-3 uppercase tracking-wider font-medium">Eventos capturados</p>
             </div>
-            <div>
-                <div class="stat-number">+15</div>
-                <p class="text-white/70 text-sm mt-2 uppercase tracking-wider">Clientes felices</p>
+            <div class="stat-item">
+                <div class="stat-number" data-count="15" data-suffix="">+<span>0</span></div>
+                <p class="text-white/70 text-sm mt-3 uppercase tracking-wider font-medium">Clientes felices</p>
             </div>
-            <div>
-                <div class="stat-number">+10k</div>
-                <p class="text-white/70 text-sm mt-2 uppercase tracking-wider">Fotos entregadas</p>
+            <div class="stat-item">
+                <div class="stat-number" data-count="10000" data-suffix="k">+<span>0</span></div>
+                <p class="text-white/70 text-sm mt-3 uppercase tracking-wider font-medium">Fotos entregadas</p>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+(function(){
+    var statsSection = document.getElementById('stats-section');
+    if (!statsSection) return;
+    var statItems = statsSection.querySelectorAll('.stat-item');
+    if (!statItems.length) return;
+    var counted = false;
+    var animating = [];
+
+    function animateCounter(el, target, suffix) {
+        var span = el.querySelector('span');
+        if (!span) return;
+        var duration = 2200;
+        var startTime = null;
+
+        function step(timestamp) {
+            if (!startTime) startTime = timestamp;
+            var progress = Math.min((timestamp - startTime) / duration, 1);
+            var eased = 1 - Math.pow(1 - progress, 3);
+            var current = Math.floor(eased * target);
+            if (target >= 1000) {
+                span.textContent = Math.floor(current / 100) / 10 + (suffix || '');
+            } else {
+                span.textContent = current;
+            }
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            } else {
+                span.textContent = target >= 1000 ? (target / 100) / 10 + (suffix || '') : target;
+                el.classList.add('stat-bounce');
+                setTimeout(function(){ el.classList.remove('stat-bounce'); }, 500);
+            }
+        }
+        requestAnimationFrame(step);
+    }
+
+    function startCounters() {
+        if (counted) return;
+        counted = true;
+        statItems.forEach(function(item) {
+            var numEl = item.querySelector('.stat-number');
+            if (!numEl) return;
+            var target = parseInt(numEl.dataset.count, 10);
+            var suffix = numEl.dataset.suffix || '';
+            animateCounter(numEl, target, suffix);
+        });
+    }
+
+    if ('IntersectionObserver' in window) {
+        var obs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) {
+                if (e.isIntersecting) { startCounters(); obs.disconnect(); }
+            });
+        }, { threshold: 0.3 });
+        obs.observe(statsSection);
+    } else {
+        window.addEventListener('scroll', function handler() {
+            var rect = statsSection.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.8) { startCounters(); window.removeEventListener('scroll', handler); }
+        }, { passive: true });
+    }
+})();
+</script>
 
 {{-- About --}}
 <section class="py-20 sm:py-28 bg-white">
@@ -215,22 +284,21 @@
 {{-- Workflow --}}
 <section class="py-24 sm:py-32 bg-white relative overflow-hidden" id="workflow-section">
     <style>
-        .pr-card { opacity:0; transform:translateY(60px) scale(.96); transition:all .8s cubic-bezier(.22,1,.36,1); }
+        .pr-card { opacity:0; transform:translateY(80px) scale(.95); transition:all 1s cubic-bezier(.22,1,.36,1); will-change:transform,opacity; }
         .pr-card.show { opacity:1; transform:translateY(0) scale(1); }
-        .pr-num { opacity:0; transform:translateX(-30px); transition:all .7s cubic-bezier(.22,1,.36,1) .2s; }
+        .pr-num { opacity:0; transform:translateX(-40px); transition:all .9s cubic-bezier(.22,1,.36,1) .3s; will-change:transform,opacity; }
         .pr-card.show .pr-num { opacity:1; transform:translateX(0); }
-        .pr-body { opacity:0; transform:translateX(30px); transition:all .7s cubic-bezier(.22,1,.36,1) .3s; }
+        .pr-body { opacity:0; transform:translateX(40px); transition:all .9s cubic-bezier(.22,1,.36,1) .4s; will-change:transform,opacity; }
         .pr-card.show .pr-body { opacity:1; transform:translateX(0); }
-        .pr-icon { opacity:0; transform:scale(0) rotate(-45deg); transition:all .6s cubic-bezier(.34,1.56,.64,1) .4s; }
-        .pr-card.show .pr-icon { opacity:1; transform:scale(1) rotate(0deg); }
-        .pr-dot { opacity:0; transform:scale(0); transition:all .5s cubic-bezier(.34,1.56,.64,1) .15s; }
+        .pr-dot { opacity:0; transform:scale(0); transition:all .7s cubic-bezier(.34,1.56,.64,1) .15s; will-change:transform,opacity; }
         .pr-card.show .pr-dot { opacity:1; transform:scale(1); }
-        .pr-glint { position:absolute; inset:0; background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.4) 45%,transparent 60%); background-size:200% 100%; background-position:200% 0; }
-        .pr-card.show .pr-glint { animation:prShine .8s ease .5s forwards; }
+        .pr-glint { position:absolute; inset:0; background:linear-gradient(105deg,transparent 25%,rgba(255,255,255,.5) 45%,transparent 65%); background-size:200% 100%; background-position:200% 0; pointer-events:none; }
+        .pr-card.show .pr-glint { animation:prShine 1s ease .6s forwards; }
         @keyframes prShine { to { background-position:-200% 0; } }
-        @keyframes prLineGrow { from { height:0; } to { height:var(--h); } }
-        @keyframes prPulse { 0%,100% { box-shadow:0 0 0 0 rgba(252,155,103,.4); } 50% { box-shadow:0 0 0 16px rgba(252,155,103,0); } }
-        .pr-pulse { animation:prPulse 2.5s ease-in-out infinite; }
+        @keyframes prPulse { 0%,100% { box-shadow:0 0 0 0 rgba(252,155,103,.35); } 50% { box-shadow:0 0 0 20px rgba(252,155,103,0); } }
+        .pr-pulse { animation:prPulse 3s ease-in-out infinite; }
+        .pr-card.show .pr-pulse { animation-delay:.8s; }
+        @keyframes prFloatUp { 0%{opacity:0;transform:translateY(30px)} 100%{opacity:1;transform:translateY(0)} }
     </style>
 
     <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#c8e7d8]/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -251,13 +319,13 @@
             <div class="hidden md:block absolute left-[52px] lg:left-[60px] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#c8e7d8]/40 to-transparent"></div>
             <div id="pr-line-fill" class="hidden md:block absolute left-[52px] lg:left-[60px] top-0 w-px bg-gradient-to-b from-[#FC9B67] via-[#c8e7d8] to-[#4e5e72]" style="height:0;"></div>
 
-            <div class="space-y-16 md:space-y-24">
+            <div class="space-y-24 md:space-y-36">
                 <div class="pr-card" data-delay="0">
                     <div class="flex items-start gap-6 md:gap-8">
                         <div class="relative z-10 flex-shrink-0">
                             <div class="relative">
-                                <div class="w-14 h-14 md:w-[52px] md:h-[52px] lg:w-[56px] lg:h-[56px] bg-gradient-to-br from-[#c8e7d8] to-[#b0d4c0] rounded-2xl flex items-center justify-center shadow-lg pr-dot pr-pulse">
-                                    <svg class="w-7 h-7 md:w-6 md:h-6 lg:w-7 lg:h-7 text-[#4e5e72]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div class="w-16 h-16 md:w-[64px] md:h-[64px] lg:w-[72px] lg:h-[72px] bg-gradient-to-br from-[#c8e7d8] to-[#b0d4c0] rounded-2xl flex items-center justify-center shadow-lg pr-dot pr-pulse">
+                                    <svg class="w-8 h-8 md:w-7 md:h-7 lg:w-9 lg:h-9 text-[#4e5e72]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.16a15.53 15.53 0 01-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z"/>
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0z"/>
                                     </svg>
@@ -270,7 +338,7 @@
                                 <div class="p-6 md:p-8">
                                     <div class="flex items-start gap-5 md:gap-8">
                                         <div class="pr-num hidden md:block flex-shrink-0">
-                                            <span class="text-6xl lg:text-7xl font-black text-[#c8e7d8]/30 select-none leading-none" style="line-height:.8;">01</span>
+                                            <span class="text-8xl lg:text-9xl font-black text-[#c8e7d8]/25 select-none leading-none" style="line-height:.7;">01</span>
                                         </div>
                                         <div class="pr-body flex-1">
                                             <span class="inline-block text-xs font-bold text-[#FC9B67] uppercase tracking-widest mb-2">Paso 1</span>
@@ -292,9 +360,15 @@
                     <div class="flex items-start gap-6 md:gap-8">
                         <div class="relative z-10 flex-shrink-0">
                             <div class="relative">
-                                <div class="w-14 h-14 md:w-[52px] md:h-[52px] lg:w-[56px] lg:h-[56px] bg-gradient-to-br from-[#FC9B67] to-[#e88950] rounded-2xl flex items-center justify-center shadow-lg pr-dot pr-pulse">
-                                    <svg class="w-7 h-7 md:w-6 md:h-6 lg:w-7 lg:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"/>
+                                <div class="w-16 h-16 md:w-[64px] md:h-[64px] lg:w-[72px] lg:h-[72px] bg-gradient-to-br from-[#FC9B67] to-[#e88950] rounded-2xl flex items-center justify-center shadow-lg pr-dot pr-pulse">
+                                    <svg class="w-8 h-8 md:w-7 md:h-7 lg:w-9 lg:h-9 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path d="M15 5l4 4-10 10-4-4L15 5z" stroke-width="1.5" stroke-linejoin="round"/>
+                                        <path d="M7 15l2 2" stroke-width="1.5" stroke-linecap="round"/>
+                                        <path d="M19 7l.8.8M19.8 7l-.8.8" stroke-width="1.5" stroke-linecap="round"/>
+                                        <path d="M4 9l.6.6M4.6 9l-.6.6" stroke-width="1.5" stroke-linecap="round"/>
+                                        <path d="M10 4l.5.5M10.5 4l-.5.5" stroke-width="1.3" stroke-linecap="round"/>
+                                        <path d="M20 12l.4.4M20.4 12l-.4.4" stroke-width="1.3" stroke-linecap="round"/>
+                                    </svg>
                                     </svg>
                                 </div>
                             </div>
@@ -305,7 +379,7 @@
                                 <div class="p-6 md:p-8">
                                     <div class="flex items-start gap-5 md:gap-8">
                                         <div class="pr-num hidden md:block flex-shrink-0">
-                                            <span class="text-6xl lg:text-7xl font-black text-[#FC9B67]/20 select-none leading-none" style="line-height:.8;">02</span>
+                                            <span class="text-8xl lg:text-9xl font-black text-[#FC9B67]/20 select-none leading-none" style="line-height:.7;">02</span>
                                         </div>
                                         <div class="pr-body flex-1">
                                             <span class="inline-block text-xs font-bold text-[#FC9B67] uppercase tracking-widest mb-2">Paso 2</span>
@@ -328,10 +402,13 @@
                     <div class="flex items-start gap-6 md:gap-8">
                         <div class="relative z-10 flex-shrink-0">
                             <div class="relative">
-                                <div class="w-14 h-14 md:w-[52px] md:h-[52px] lg:w-[56px] lg:h-[56px] bg-gradient-to-br from-[#4e5e72] to-[#3d4a5a] rounded-2xl flex items-center justify-center shadow-lg pr-dot pr-pulse">
-                                    <svg class="w-7 h-7 md:w-6 md:h-6 lg:w-7 lg:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                <div class="w-16 h-16 md:w-[64px] md:h-[64px] lg:w-[72px] lg:h-[72px] bg-gradient-to-br from-[#4e5e72] to-[#3d4a5a] rounded-2xl flex items-center justify-center shadow-lg pr-dot pr-pulse">
+                                    <svg class="w-8 h-8 md:w-7 md:h-7 lg:w-9 lg:h-9 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <rect x="7" y="11" width="10" height="9" rx="2" stroke-width="1.5"/>
+                                        <path d="M9 11V8a3 3 0 116 0v3" stroke-width="1.5"/>
+                                        <circle cx="12" cy="15.5" r="1.3" stroke-width="1.5"/>
+                                        <path d="M12 15.5v1.5" stroke-width="1.5" stroke-linecap="round"/>
+                                    </svg>
                                     </svg>
                                 </div>
                             </div>
@@ -342,7 +419,7 @@
                                 <div class="p-6 md:p-8">
                                     <div class="flex items-start gap-5 md:gap-8">
                                         <div class="pr-num hidden md:block flex-shrink-0">
-                                            <span class="text-6xl lg:text-7xl font-black text-[#4e5e72]/15 select-none leading-none" style="line-height:.8;">03</span>
+                                            <span class="text-8xl lg:text-9xl font-black text-[#4e5e72]/12 select-none leading-none" style="line-height:.7;">03</span>
                                         </div>
                                         <div class="pr-body flex-1">
                                             <span class="inline-block text-xs font-bold text-[#FC9B67] uppercase tracking-widest mb-2">Paso 3</span>
@@ -365,8 +442,8 @@
                     <div class="flex items-start gap-6 md:gap-8">
                         <div class="relative z-10 flex-shrink-0">
                             <div class="relative">
-                                <div class="w-14 h-14 md:w-[52px] md:h-[52px] lg:w-[56px] lg:h-[56px] bg-gradient-to-br from-[#c8e7d8] to-[#b0d4c0] rounded-2xl flex items-center justify-center shadow-lg pr-dot pr-pulse">
-                                    <svg class="w-7 h-7 md:w-6 md:h-6 lg:w-7 lg:h-7 text-[#4e5e72]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div class="w-16 h-16 md:w-[64px] md:h-[64px] lg:w-[72px] lg:h-[72px] bg-gradient-to-br from-[#c8e7d8] to-[#b0d4c0] rounded-2xl flex items-center justify-center shadow-lg pr-dot pr-pulse">
+                                    <svg class="w-8 h-8 md:w-7 md:h-7 lg:w-9 lg:h-9 text-[#4e5e72]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/>
                                     </svg>
                                 </div>
@@ -378,7 +455,7 @@
                                 <div class="p-6 md:p-8">
                                     <div class="flex items-start gap-5 md:gap-8">
                                         <div class="pr-num hidden md:block flex-shrink-0">
-                                            <span class="text-6xl lg:text-7xl font-black text-[#c8e7d8]/40 select-none leading-none" style="line-height:.8;">04</span>
+                                            <span class="text-8xl lg:text-9xl font-black text-[#c8e7d8]/35 select-none leading-none" style="line-height:.7;">04</span>
                                         </div>
                                         <div class="pr-body flex-1">
                                             <span class="inline-block text-xs font-bold text-[#FC9B67] uppercase tracking-widest mb-2">Paso 4</span>
