@@ -38,27 +38,27 @@
         <h1 class="text-2xl text-center mb-6 font-['Dancing_Script']">Contacto</h1>
 
         <div class="mb-4">
-            <input type="text" name="name" placeholder="Escriba su nombre..." value="{{ old('name') }}" required>
+            <input type="text" name="name" placeholder="Tu nombre..." value="{{ old('name') }}" required>
             @error('name') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
 
         <div class="mb-4">
-            <input type="text" name="cname" placeholder="Escriba sus apellidos..." value="{{ old('cname') }}" required>
+            <input type="text" name="cname" placeholder="Tus apellidos..." value="{{ old('cname') }}" required>
             @error('cname') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
 
         <div class="mb-4">
-            <input type="text" name="mobil" placeholder="Escriba su n&uacute;mero de m&oacute;vil..." value="{{ old('mobil') }}" required maxlength="9">
+            <input type="text" name="mobil" placeholder="Tu n&uacute;mero de m&oacute;vil..." value="{{ old('mobil') }}" required maxlength="9">
             @error('mobil') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
 
         <div class="mb-4">
-            <input type="email" name="email" placeholder="Escriba su e-mail..." value="{{ old('email') }}" required>
+            <input type="email" name="email" placeholder="Tu e-mail..." value="{{ old('email') }}" required>
             @error('email') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
 
         <div class="mb-4">
-            <textarea name="mensaje" placeholder="Escriba aqu&iacute; su mensaje..." rows="5" required>{{ old('mensaje') }}</textarea>
+            <textarea name="mensaje" placeholder="Tu mensaje..." rows="5" required>{{ old('mensaje') }}</textarea>
             @error('mensaje') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
 

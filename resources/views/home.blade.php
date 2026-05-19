@@ -79,7 +79,7 @@
             Jacoto <span class="text-[#FC9B67]">Fotografía</span>
         </h1>
         <p class="text-lg sm:text-xl text-white/80 max-w-2xl mx-auto mb-10 animate-fade-up delay-200 leading-relaxed">
-            Capturamos la esencia de tus momentos más especiales con sensibilidad, creatividad y pasión. Bodas, eventos y sesiones únicas en la Costa Brava.
+            Capturo la esencia de tus momentos más especiales con sensibilidad, creatividad y pasión. Bodas, eventos y sesiones únicas en la Costa Brava.
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up delay-300">
             <a href="{{ route('clientes') }}" class="inline-flex items-center gap-2 px-8 py-3.5 bg-[#FC9B67] text-white font-semibold rounded-full hover:bg-[#e88950] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5">
@@ -87,7 +87,7 @@
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </a>
             <a href="{{ route('contacto') }}" class="inline-flex items-center gap-2 px-8 py-3.5 border-2 border-white/30 text-white font-semibold rounded-full hover:bg-white/10 hover:border-white/50 transition-all duration-300">
-                Contáctanos
+                Contáctame
             </a>
         </div>
     </div>
@@ -225,7 +225,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
         <div class="text-center mb-16">
             <span class="text-[#FC9B67] font-semibold text-sm uppercase tracking-widest">Testimonios</span>
-            <h2 class="text-3xl sm:text-4xl font-bold text-[#4e5e72] mt-3">Lo que dicen nuestros clientes</h2>
+            <h2 class="text-3xl sm:text-4xl font-bold text-[#4e5e72] mt-3">Lo que dicen mis clientes</h2>
         </div>
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div class="testimonial-card bg-white rounded-2xl p-8 shadow-sm">
@@ -287,8 +287,8 @@
         <div class="absolute inset-0 bg-gradient-to-r from-[#4e5e72]/95 to-[#4e5e72]/80"></div>
     </div>
     <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 text-center">
-        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">¿Listo para capturar tu historia?</h2>
-        <p class="text-white/70 text-lg mb-8 leading-relaxed">Cuéntanos sobre tu proyecto y te prepararemos un presupuesto personalizado sin compromiso.</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">¿Listo para contar tu historia?</h2>
+        <p class="text-white/70 text-lg mb-8 leading-relaxed">Cuéntame sobre tu proyecto y te prepararé un presupuesto personalizado sin compromiso.</p>
         <a href="{{ route('contacto') }}" class="inline-flex items-center gap-2 px-10 py-4 bg-[#FC9B67] text-white font-semibold rounded-full hover:bg-[#e88950] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-lg">
             Solicita tu presupuesto
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>

@@ -87,7 +87,7 @@
                     <span class="text-[#FC9B67]">Desarrollador</span>
                 </h1>
                 <p class="text-lg text-gray-600 mt-6 leading-relaxed max-w-xl">
-                    Detrás de Jacoto Fotografía hay un profesional que entiende tanto el arte de capturar momentos como la tecnología que los hace llegar al mundo.
+                    Soy un profesional que entiende tanto el arte de capturar momentos como la tecnología que los hace llegar al mundo.
                 </p>
                 <div class="flex flex-wrap gap-3 mt-8">
                     <a href="https://lawebdejacoto.com" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3 bg-[#4e5e72] text-white font-semibold rounded-full hover:bg-[#3d4a5a] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5">
