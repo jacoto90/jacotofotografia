@@ -8,12 +8,12 @@
     <h1 class="text-3xl font-bold text-[#4e5e72] mb-8 text-center">Política de Protección de Datos</h1>
 
     <div class="bg-white rounded-lg shadow-md p-8 text-sm text-gray-700 leading-relaxed space-y-6">
-        <p class="font-semibold text-base">JACOTO FOTOGRAFÍA – JOSÉ ANTONIO COTO MARTÍNEZ</p>
+        <p class="font-semibold text-base">JACOTO FOTOGRAFÍA – JOSÉ ÁNGEL COLMENA TOMÁS</p>
 
         <section>
             <h2 class="text-lg font-semibold text-[#4e5e72] mb-2">1. Responsable del tratamiento</h2>
-            <p>El responsable del tratamiento de tus datos personales es <strong>José Antonio Coto Martínez</strong>, con domicilio en Girona, actuando bajo el nombre comercial de Jacoto Fotografía.</p>
-            <p>Correo de contacto: <a href="mailto:info@jacotofotografia.com" class="text-blue-600 hover:underline">info@jacotofotografia.com</a></p>
+            <p>El responsable del tratamiento de tus datos personales es <strong>José Ángel Colmena Tomás</strong>, con domicilio en Girona, actuando bajo el nombre comercial de Jacoto Fotografía.</p>
+            <p>Correo de contacto: <a href="mailto:webjacoto@gmail.com" class="text-blue-600 hover:underline">webjacoto@gmail.com</a></p>
         </section>
 
         <section>
@@ -52,7 +52,7 @@
                 <li><strong>Limitar u oponerte</strong> al tratamiento.</li>
                 <li><strong>Solicitar la portabilidad</strong> de tus datos.</li>
             </ul>
-            <p class="mt-2">Para ejercer estos derechos, escríbenos a <a href="mailto:info@jacotofotografia.com" class="text-blue-600 hover:underline">info@jacotofotografia.com</a>.</p>
+            <p class="mt-2">Para ejercer estos derechos, escríbenos a <a href="mailto:webjacoto@gmail.com" class="text-blue-600 hover:underline">webjacoto@gmail.com</a>.</p>
             <p>También tienes derecho a presentar una reclamación ante la <strong>Agencia Española de Protección de Datos (AEPD)</strong>.</p>
         </section>
 
