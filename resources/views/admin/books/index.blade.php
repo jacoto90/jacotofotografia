@@ -40,9 +40,13 @@
                     $coverUrl = asset('storage/books/' . $b->idbookfotos . '/foto_portada.jpg') . '?v=' . $coverTs;
                 }
                 $photoCount = 0;
-                $bookDir = public_path($b->nombrebook);
-                if (is_dir($bookDir)) {
-                    $photoCount = count(array_filter(scandir($bookDir), fn($f) => in_array(strtolower(pathinfo($f, PATHINFO_EXTENSION)), ['jpg','jpeg','png','gif'])));
+                $ftpDir = public_path($b->nombrebook);
+                if (is_dir($ftpDir)) {
+                    $photoCount += count(array_filter(scandir($ftpDir), fn($f) => in_array(strtolower(pathinfo($f, PATHINFO_EXTENSION)), ['jpg','jpeg','png','gif'])));
+                }
+                $upDir = public_path('storage/books/' . $b->idbookfotos);
+                if (is_dir($upDir)) {
+                    $photoCount += count(array_filter(scandir($upDir), fn($f) => in_array(strtolower(pathinfo($f, PATHINFO_EXTENSION)), ['jpg','jpeg','png','gif'])));
                 }
             @endphp
             <tr class="border-t border-gray-100 hover:bg-gray-50">
@@ -91,9 +95,13 @@
             $coverUrl = asset('storage/books/' . $b->idbookfotos . '/foto_portada.jpg') . '?v=' . $coverTs;
         }
         $photoCount = 0;
-        $bookDir = public_path($b->nombrebook);
-        if (is_dir($bookDir)) {
-            $photoCount = count(array_filter(scandir($bookDir), fn($f) => in_array(strtolower(pathinfo($f, PATHINFO_EXTENSION)), ['jpg','jpeg','png','gif'])));
+        $ftpDir = public_path($b->nombrebook);
+        if (is_dir($ftpDir)) {
+            $photoCount += count(array_filter(scandir($ftpDir), fn($f) => in_array(strtolower(pathinfo($f, PATHINFO_EXTENSION)), ['jpg','jpeg','png','gif'])));
+        }
+        $upDir = public_path('storage/books/' . $b->idbookfotos);
+        if (is_dir($upDir)) {
+            $photoCount += count(array_filter(scandir($upDir), fn($f) => in_array(strtolower(pathinfo($f, PATHINFO_EXTENSION)), ['jpg','jpeg','png','gif'])));
         }
     @endphp
     <div class="bg-white rounded-lg shadow-sm overflow-hidden">
