@@ -319,8 +319,8 @@
             <div class="hidden md:block absolute left-[52px] lg:left-[60px] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#c8e7d8]/40 to-transparent"></div>
             <div id="pr-line-fill" class="hidden md:block absolute left-[52px] lg:left-[60px] top-0 w-px bg-gradient-to-b from-[#FC9B67] via-[#c8e7d8] to-[#4e5e72]" style="height:0;"></div>
 
-            <div class="space-y-28 md:space-y-40">
-                <div class="pr-card" data-delay="0">
+            <div>
+                <div class="pr-card mb-28 md:mb-40" data-delay="0">
                     <div class="flex items-start gap-6 md:gap-8">
                         <div class="relative z-10 flex-shrink-0">
                             <div class="relative">
@@ -356,7 +356,7 @@
                     </div>
                 </div>
 
-                <div class="pr-card" data-delay="100">
+                <div class="pr-card mb-28 md:mb-40" data-delay="100">
                     <div class="flex items-start gap-6 md:gap-8">
                         <div class="relative z-10 flex-shrink-0">
                             <div class="relative">
@@ -393,7 +393,7 @@
                     </div>
                 </div>
 
-                <div class="pr-card" data-delay="200">
+                <div class="pr-card mb-28 md:mb-40" data-delay="200">
                     <div class="flex items-start gap-6 md:gap-8">
                         <div class="relative z-10 flex-shrink-0">
                             <div class="relative">
@@ -433,7 +433,7 @@
                     </div>
                 </div>
 
-                <div class="pr-card" data-delay="300">
+                <div class="pr-card mb-28 md:mb-40" data-delay="300">
                     <div class="flex items-start gap-6 md:gap-8">
                         <div class="relative z-10 flex-shrink-0">
                             <div class="relative">
