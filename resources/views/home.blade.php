@@ -360,15 +360,9 @@
                     <div class="flex items-start gap-6 md:gap-8">
                         <div class="relative z-10 flex-shrink-0">
                             <div class="relative">
-                                <div class="w-16 h-16 md:w-[64px] md:h-[64px] lg:w-[72px] lg:h-[72px] bg-gradient-to-br from-[#FC9B67] to-[#e88950] rounded-2xl flex items-center justify-center shadow-lg pr-dot pr-pulse">
+                                <div class="w-16 h-16 md:w-[64px] md:h-[64px] lg:w-[72px] lg:h-[72px] bg-gradient-to-br from-[#e88950] to-[#c06a35] rounded-2xl flex items-center justify-center shadow-lg pr-dot pr-pulse">
                                     <svg class="w-8 h-8 md:w-7 md:h-7 lg:w-9 lg:h-9 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path d="M15 5l4 4-10 10-4-4L15 5z" stroke-width="1.5" stroke-linejoin="round"/>
-                                        <path d="M7 15l2 2" stroke-width="1.5" stroke-linecap="round"/>
-                                        <path d="M19 7l.8.8M19.8 7l-.8.8" stroke-width="1.5" stroke-linecap="round"/>
-                                        <path d="M4 9l.6.6M4.6 9l-.6.6" stroke-width="1.5" stroke-linecap="round"/>
-                                        <path d="M10 4l.5.5M10.5 4l-.5.5" stroke-width="1.3" stroke-linecap="round"/>
-                                        <path d="M20 12l.4.4M20.4 12l-.4.4" stroke-width="1.3" stroke-linecap="round"/>
-                                    </svg>
+                                        <path d="M12 2l1.5 4.5L18 5l-2.5 4 4 2.5-4.5 1L17 17l-4.5-1.5L12 20l-1.5-4.5L6 17l2.5-4-4-2.5 4.5-1L7 5l4.5 1.5L12 2z" stroke-width="1.8" fill="currentColor" fill-opacity="0.15"/>
                                     </svg>
                                 </div>
                             </div>
