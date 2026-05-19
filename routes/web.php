@@ -9,6 +9,7 @@ Route::get('/clientes', [PageController::class, 'clientes'])->name('clientes');
 Route::post('/book/access', [PageController::class, 'bookAccess'])->name('book.access');
 Route::post('/book/download', [PageController::class, 'bookDownload'])->name('book.download');
 Route::get('/contacto', [PageController::class, 'contacto'])->name('contacto');
+Route::get('/proteccion-datos', [PageController::class, 'proteccionDatos'])->name('proteccion.datos');
 Route::post('/contacto/enviar', [PageController::class, 'contactoEnviar'])->name('contacto.enviar');
 Route::get('/jacoto', [PageController::class, 'jacoto'])->name('jacoto');
 

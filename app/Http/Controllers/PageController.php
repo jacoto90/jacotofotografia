@@ -177,4 +177,9 @@ class PageController extends Controller
     {
         return view('jacoto');
     }
+
+    public function proteccionDatos()
+    {
+        return view('proteccion-datos');
+    }
 }

@@ -69,7 +69,7 @@
         <div class="mb-4">
             <label class="flex items-center gap-2">
                 <input type="checkbox" name="politica" required>
-                <span class="text-sm">Acepto la pol&iacute;tica de Protecci&oacute;n de datos</span>
+                <span class="text-sm">Acepto la <a href="{{ route('proteccion.datos') }}" target="_blank" rel="noopener" class="text-blue-600 hover:underline">pol&iacute;tica de Protecci&oacute;n de datos</a></span>
             </label>
         </div>
 
