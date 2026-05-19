@@ -163,22 +163,53 @@
         </div>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
             <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 text-center group">
-                <div class="w-16 h-16 bg-[#c8e7d8] rounded-2xl flex items-center justify-center mx-auto mb-5 group-hover:bg-[#b8d7c8] transition-colors">
-                    <svg class="w-8 h-8 text-[#4e5e72]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342"/></svg>
+                <div class="w-20 h-20 bg-gradient-to-br from-[#c8e7d8] to-[#b0d4c0] rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-md group-hover:shadow-lg group-hover:scale-110 transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-300"></div>
+                    <svg class="w-10 h-10 text-[#4e5e72]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <circle cx="12" cy="13" r="5" stroke-width="1.5"/>
+                        <path d="M12 5l1.8 2.3-1.8 2.2-1.8-2.2L12 5z" stroke-width="1.3" fill="currentColor" fill-opacity="0.18"/>
+                        <path d="M7.5 11l-.8.8M7.8 11l-1 .6" stroke-width="1.3" stroke-linecap="round"/>
+                        <path d="M16.5 11l.8.8M16.2 11l1 .6" stroke-width="1.3" stroke-linecap="round"/>
+                        <path d="M4.5 7.5l.8.8M5.3 7.5l-.8.8" stroke-width="1.2" stroke-linecap="round"/>
+                        <path d="M19.5 15l.8.8M20.3 15l-.8.8" stroke-width="1.2" stroke-linecap="round"/>
+                        <path d="M12 18.5v2" stroke-width="1.3" stroke-linecap="round"/>
+                    </svg>
                 </div>
                 <h3 class="font-semibold text-[#4e5e72] mb-2">Bodas</h3>
                 <p class="text-gray-500 text-sm leading-relaxed">Acompaño cada boda con un reportaje natural y emocional, capturando los momentos que de verdad importan. Me gusta pasar desapercibido para que todo fluya con naturalidad.</p>
             </div>
             <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 text-center group">
-                <div class="w-16 h-16 bg-[#c8e7d8] rounded-2xl flex items-center justify-center mx-auto mb-5 group-hover:bg-[#b8d7c8] transition-colors">
-                    <svg class="w-8 h-8 text-[#4e5e72]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"/></svg>
+                <div class="w-20 h-20 bg-gradient-to-br from-[#FC9B67] to-[#e88950] rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-md group-hover:shadow-lg group-hover:scale-110 transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-300"></div>
+                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.5l1.2 3.8 3.8-1.2-2.5 3 3.5 3.2-3.8.8.8 3.8-3-2.2-3 2.2.8-3.8L6 11.3l3.5-3-2.5-3 3.8 1.2L12 2.5z" stroke-width="1.3"/>
+                        <circle cx="5" cy="6" r=".7" fill="currentColor" stroke="none"/>
+                        <circle cx="19" cy="7" r=".7" fill="currentColor" stroke="none"/>
+                        <circle cx="6" cy="19" r=".7" fill="currentColor" stroke="none"/>
+                        <circle cx="20" cy="17" r=".7" fill="currentColor" stroke="none"/>
+                        <circle cx="8" cy="4" r=".5" fill="currentColor" stroke="none"/>
+                        <circle cx="17" cy="5" r=".5" fill="currentColor" stroke="none"/>
+                        <circle cx="4" cy="16" r=".5" fill="currentColor" stroke="none"/>
+                        <circle cx="16" cy="20" r=".5" fill="currentColor" stroke="none"/>
+                        <circle cx="9" cy="21" r=".5" fill="currentColor" stroke="none"/>
+                    </svg>
                 </div>
                 <h3 class="font-semibold text-[#4e5e72] mb-2">Eventos</h3>
                 <p class="text-gray-500 text-sm leading-relaxed">Cubro eventos corporativos y celebraciones con un enfoque dinámico y profesional. Me adapto al ritmo de cada evento para capturar su esencia sin interferir.</p>
             </div>
             <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 text-center group">
-                <div class="w-16 h-16 bg-[#c8e7d8] rounded-2xl flex items-center justify-center mx-auto mb-5 group-hover:bg-[#b8d7c8] transition-colors">
-                    <svg class="w-8 h-8 text-[#4e5e72]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>
+                <div class="w-20 h-20 bg-gradient-to-br from-[#4e5e72] to-[#3d4a5a] rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-md group-hover:shadow-lg group-hover:scale-110 transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-300"></div>
+                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <rect x="3.5" y="7.5" width="17" height="11" rx="2.5" stroke-width="1.5"/>
+                        <path d="M7.5 7.5l1-3h7l1 3" stroke-width="1.5"/>
+                        <circle cx="12" cy="14" r="4" stroke-width="1.5"/>
+                        <circle cx="12" cy="14" r="1.8" stroke-width="1.2" fill="currentColor" fill-opacity="0.2"/>
+                        <circle cx="17.5" cy="11" r="1" stroke-width="1.2"/>
+                        <path d="M18 4l.8.8M18.8 4l-.8.8" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M5 4l.6.6M5.6 4l-.6.6" stroke-width="1.3" stroke-linecap="round"/>
+                        <path d="M20 21l.7.7M20.7 21l-.7.7" stroke-width="1.3" stroke-linecap="round"/>
+                    </svg>
                 </div>
                 <h3 class="font-semibold text-[#4e5e72] mb-2">Sesiones personalizadas</h3>
                 <p class="text-gray-500 text-sm leading-relaxed">Desde retratos individuales hasta sesiones de pareja o familia. Escucho lo que buscas y creamos juntos una sesión a tu medida, en el entorno que mejor te represente.</p>
