@@ -185,12 +185,25 @@ class AdminController extends Controller
             'pwd' => 'nullable|max:15',
         ]);
 
+        $book = Bookfoto::findOrFail($id);
+        $oldName = $book->nombrebook;
+
         $data = $request->except('pwd');
         if ($request->filled('pwd')) {
             $data['pwd'] = $request->pwd;
         }
 
-        Bookfoto::findOrFail($id)->update($data);
+        $book->update($data);
+
+        $newName = $book->nombrebook;
+        if ($oldName !== $newName) {
+            $oldPath = public_path($oldName);
+            $newPath = public_path($newName);
+            if (is_dir($oldPath)) {
+                rename($oldPath, $newPath);
+            }
+        }
+
         return redirect()->route('admin.books.index')->with('success', 'Book actualizado correctamente.');
     }
 
