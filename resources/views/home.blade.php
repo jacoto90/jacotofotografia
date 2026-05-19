@@ -179,19 +179,13 @@
                 <p class="text-gray-500 text-sm leading-relaxed">Acompaño cada boda con un reportaje natural y emocional, capturando los momentos que de verdad importan. Me gusta pasar desapercibido para que todo fluya con naturalidad.</p>
             </div>
             <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 text-center group">
-                <div class="w-20 h-20 bg-gradient-to-br from-[#FC9B67] to-[#e88950] rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-md group-hover:shadow-lg group-hover:scale-110 transition-all duration-300 relative overflow-hidden">
+                <div class="w-20 h-20 bg-gradient-to-br from-[#e88950] to-[#c06a35] rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-md group-hover:shadow-lg group-hover:scale-110 transition-all duration-300 relative overflow-hidden">
                     <div class="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-300"></div>
-                    <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2.5l1.2 3.8 3.8-1.2-2.5 3 3.5 3.2-3.8.8.8 3.8-3-2.2-3 2.2.8-3.8L6 11.3l3.5-3-2.5-3 3.8 1.2L12 2.5z" stroke-width="1.3"/>
-                        <circle cx="5" cy="6" r=".7" fill="currentColor" stroke="none"/>
-                        <circle cx="19" cy="7" r=".7" fill="currentColor" stroke="none"/>
-                        <circle cx="6" cy="19" r=".7" fill="currentColor" stroke="none"/>
-                        <circle cx="20" cy="17" r=".7" fill="currentColor" stroke="none"/>
-                        <circle cx="8" cy="4" r=".5" fill="currentColor" stroke="none"/>
-                        <circle cx="17" cy="5" r=".5" fill="currentColor" stroke="none"/>
-                        <circle cx="4" cy="16" r=".5" fill="currentColor" stroke="none"/>
-                        <circle cx="16" cy="20" r=".5" fill="currentColor" stroke="none"/>
-                        <circle cx="9" cy="21" r=".5" fill="currentColor" stroke="none"/>
+                    <svg class="w-10 h-10 text-[#4e5e72]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="5" stroke-width="1.8"/>
+                        <circle cx="12" cy="12" r="2" stroke-width="1.5" fill="currentColor" fill-opacity="0.25"/>
+                        <path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.5 4.5l2 2M17.5 17.5l2 2M4.5 19.5l2-2M17.5 6.5l2-2" stroke-width="1.8" stroke-linecap="round"/>
+                        <path d="M8 12h8M12 8v8" stroke-width="1.5" stroke-linecap="round"/>
                     </svg>
                 </div>
                 <h3 class="font-semibold text-[#4e5e72] mb-2">Eventos</h3>
@@ -214,6 +208,155 @@
                 <h3 class="font-semibold text-[#4e5e72] mb-2">Sesiones personalizadas</h3>
                 <p class="text-gray-500 text-sm leading-relaxed">Desde retratos individuales hasta sesiones de pareja o familia. Escucho lo que buscas y creamos juntos una sesión a tu medida, en el entorno que mejor te represente.</p>
             </div>
+        </div>
+    </div>
+</section>
+
+{{-- Workflow --}}
+<section class="py-20 sm:py-28 bg-white relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-[#c8e7d8]/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-80 h-80 bg-[#FC9B67]/5 rounded-full blur-3xl"></div>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
+        <div class="text-center mb-16">
+            <span class="text-[#FC9B67] font-semibold text-sm uppercase tracking-widest">Valor diferencial</span>
+            <h2 class="text-3xl sm:text-4xl font-bold text-[#4e5e72] mt-3">Tus fotos hechas, y aquí las tienes</h2>
+            <p class="text-gray-500 text-base mt-4 max-w-2xl mx-auto leading-relaxed">
+                Te hago las fotos, las edito y las subo a tu galería privada en esta web. 
+                Sin USBs, sin WeTransfer que caduca, sin tener que pedirme las fotos una a una. 
+                Todo online, siempre accesible, organizado y listo para descargar.
+            </p>
+        </div>
+
+        <div class="relative">
+            <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-[#c8e7d8] -translate-x-1/2"></div>
+
+            <div class="space-y-12 md:space-y-16">
+                <div class="relative flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                    <div class="hidden md:flex w-1/2 justify-end">
+                        <div class="text-right">
+                            <span class="text-sm font-bold text-[#FC9B67]">Paso 1</span>
+                            <h3 class="text-xl font-bold text-[#4e5e72] mt-1">La sesión de fotos</h3>
+                            <p class="text-gray-500 text-sm mt-2 leading-relaxed max-w-sm ml-auto">
+                                Quedamos en el lugar que elijas — estudio, exterior, tu evento, lo que sea. 
+                                Trabajo con naturalidad para que te sientas cómodo y las fotos reflejen 
+                                quien eres de verdad. Sin poses forzadas, sin prisas.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="relative z-10 flex-shrink-0">
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-[#c8e7d8] to-[#b0d4c0] rounded-2xl flex items-center justify-center shadow-lg md:absolute md:left-1/2 md:-translate-x-1/2">
+                            <svg class="w-7 h-7 md:w-8 md:h-8 text-[#4e5e72]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.16a15.53 15.53 0 01-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="md:hidden text-center">
+                        <span class="text-sm font-bold text-[#FC9B67]">Paso 1</span>
+                        <h3 class="text-xl font-bold text-[#4e5e72] mt-1">La sesión de fotos</h3>
+                        <p class="text-gray-500 text-sm mt-2 leading-relaxed">
+                            Quedamos en el lugar que elijas — estudio, exterior, tu evento, lo que sea. 
+                            Trabajo con naturalidad para que te sientas cómodo y las fotos reflejen 
+                            quien eres de verdad. Sin poses forzadas, sin prisas.
+                        </p>
+                    </div>
+                    <div class="hidden md:flex w-1/2"></div>
+                </div>
+
+                <div class="relative flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                    <div class="hidden md:flex w-1/2"></div>
+                    <div class="relative z-10 flex-shrink-0">
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-[#FC9B67] to-[#e88950] rounded-2xl flex items-center justify-center shadow-lg md:absolute md:left-1/2 md:-translate-x-1/2">
+                            <svg class="w-7 h-7 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="text-center md:text-left md:w-1/2">
+                        <span class="text-sm font-bold text-[#FC9B67]">Paso 2</span>
+                        <h3 class="text-xl font-bold text-[#4e5e72] mt-1">Edición profesional</h3>
+                        <p class="text-gray-500 text-sm mt-2 leading-relaxed md:max-w-sm">
+                            Selecciono las mejores tomas y las edito una a una con mimo: 
+                            ajuste de color, luz, encuadre y retoque si es necesario. 
+                            Cada foto sale con la calidad que merece tu recuerdo. 
+                            Tiempo estimado de entrega: entre 7 y 10 días.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="relative flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                    <div class="hidden md:flex w-1/2 justify-end">
+                        <div class="text-right">
+                            <span class="text-sm font-bold text-[#FC9B67]">Paso 3</span>
+                            <h3 class="text-xl font-bold text-[#4e5e72] mt-1">Galería privada online</h3>
+                            <p class="text-gray-500 text-sm mt-2 leading-relaxed max-w-sm ml-auto">
+                                Recibes un enlace único con tu contraseña personal para acceder 
+                                a tu galería desde cualquier dispositivo. Sin registros, sin apps, 
+                                sin complicaciones. Tus fotos organizadas y protegidas, solo visibles 
+                                para ti y quien tú quieras compartirlas.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="relative z-10 flex-shrink-0">
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-[#4e5e72] to-[#3d4a5a] rounded-2xl flex items-center justify-center shadow-lg md:absolute md:left-1/2 md:-translate-x-1/2">
+                            <svg class="w-7 h-7 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="md:hidden text-center">
+                        <span class="text-sm font-bold text-[#FC9B67]">Paso 3</span>
+                        <h3 class="text-xl font-bold text-[#4e5e72] mt-1">Galería privada online</h3>
+                        <p class="text-gray-500 text-sm mt-2 leading-relaxed">
+                            Recibes un enlace único con tu contraseña personal para acceder 
+                            a tu galería desde cualquier dispositivo. Sin registros, sin apps, 
+                            sin complicaciones. Tus fotos organizadas y protegidas, solo visibles 
+                            para ti y quien tú quieras compartirlas.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="relative flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                    <div class="hidden md:flex w-1/2"></div>
+                    <div class="relative z-10 flex-shrink-0">
+                        <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-[#c8e7d8] to-[#b0d4c0] rounded-2xl flex items-center justify-center shadow-lg md:absolute md:left-1/2 md:-translate-x-1/2">
+                            <svg class="w-7 h-7 md:w-8 md:h-8 text-[#4e5e72]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="text-center md:text-left md:w-1/2">
+                        <span class="text-sm font-bold text-[#FC9B67]">Paso 4</span>
+                        <h3 class="text-xl font-bold text-[#4e5e72] mt-1">Descarga directa</h3>
+                        <p class="text-gray-500 text-sm mt-2 leading-relaxed md:max-w-sm">
+                            Elige las fotos que más te gusten y descárgalas en alta resolución 
+                            con un clic. También puedes descargar el álbum completo en ZIP. 
+                            Sin límites, sin caducidad. Tus fotos, siempre disponibles.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-16 p-8 bg-[#f8faf9] rounded-2xl border border-[#c8e7d8]/30 max-w-3xl mx-auto">
+            <div class="w-12 h-12 bg-[#c8e7d8] rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-6 h-6 text-[#4e5e72]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>
+                </svg>
+            </div>
+            <p class="text-[#4e5e72] font-semibold text-base leading-relaxed">
+                Mientras otros fotógrafos te mandan un USB o un link de WeTransfer que caduca a los pocos días, 
+                aquí tus fotos tienen su propio espacio en la web, siempre accesibles, siempre tuyas. 
+                <strong>Eso no lo hace todo el mundo.</strong>
+            </p>
+        </div>
+
+        <div class="text-center mt-10">
+            <a href="{{ route('contacto') }}" class="inline-flex items-center gap-2 px-8 py-3.5 bg-[#FC9B67] text-white font-semibold rounded-full hover:bg-[#e88950] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+                Quiero mi galería
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
         </div>
     </div>
 </section>
