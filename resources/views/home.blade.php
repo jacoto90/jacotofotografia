@@ -282,7 +282,7 @@
 </section>
 
 {{-- Workflow --}}
-<section class="py-24 sm:py-32 bg-white relative overflow-hidden" id="workflow-section">
+<section class="py-28 sm:py-36 bg-white relative overflow-hidden" id="workflow-section">
     <style>
         .pr-card { opacity:0; transform:translateY(80px) scale(.95); transition:all 1s cubic-bezier(.22,1,.36,1); will-change:transform,opacity; }
         .pr-card.show { opacity:1; transform:translateY(0) scale(1); }
@@ -305,7 +305,7 @@
     <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#FC9B67]/5 rounded-full blur-3xl pointer-events-none"></div>
 
     <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
-        <div class="text-center mb-20 max-w-3xl mx-auto">
+        <div class="text-center mb-28 max-w-3xl mx-auto">
             <span class="inline-flex items-center gap-2 px-4 py-1.5 bg-[#c8e7d8]/40 text-[#4e5e72] text-sm font-semibold rounded-full uppercase tracking-wider">Valor diferencial</span>
             <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#4e5e72] mt-8 leading-[1.1] tracking-tight">Tus fotos hechas,<br><span class="text-[#FC9B67]">y aquí las tienes</span></h2>
             <p class="text-gray-500 text-lg sm:text-xl mt-6 leading-relaxed max-w-2xl mx-auto">
@@ -319,7 +319,7 @@
             <div class="hidden md:block absolute left-[52px] lg:left-[60px] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#c8e7d8]/40 to-transparent"></div>
             <div id="pr-line-fill" class="hidden md:block absolute left-[52px] lg:left-[60px] top-0 w-px bg-gradient-to-b from-[#FC9B67] via-[#c8e7d8] to-[#4e5e72]" style="height:0;"></div>
 
-            <div class="space-y-24 md:space-y-36">
+            <div class="space-y-28 md:space-y-40">
                 <div class="pr-card" data-delay="0">
                     <div class="flex items-start gap-6 md:gap-8">
                         <div class="relative z-10 flex-shrink-0">
@@ -361,8 +361,9 @@
                         <div class="relative z-10 flex-shrink-0">
                             <div class="relative">
                                 <div class="w-16 h-16 md:w-[64px] md:h-[64px] lg:w-[72px] lg:h-[72px] bg-gradient-to-br from-[#e88950] to-[#c06a35] rounded-2xl flex items-center justify-center shadow-lg pr-dot pr-pulse">
-                                    <svg class="w-8 h-8 md:w-7 md:h-7 lg:w-9 lg:h-9 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12 2l1.5 4.5L18 5l-2.5 4 4 2.5-4.5 1L17 17l-4.5-1.5L12 20l-1.5-4.5L6 17l2.5-4-4-2.5 4.5-1L7 5l4.5 1.5L12 2z" stroke-width="1.8" fill="currentColor" fill-opacity="0.15"/>
+                                    <svg class="w-8 h-8 md:w-7 md:h-7 lg:w-9 lg:h-9 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="12,2 15,9 22,9 16.5,14 18.5,22 12,17.5 5.5,22 7.5,14 2,9 9,9" stroke-width="2"/>
+                                        <circle cx="12" cy="12" r="2.5" stroke-width="1.5" fill="currentColor" fill-opacity="0.2"/>
                                     </svg>
                                 </div>
                             </div>
@@ -469,7 +470,7 @@
             </div>
         </div>
 
-        <div class="text-center mt-20 max-w-3xl mx-auto">
+        <div class="text-center mt-24 max-w-3xl mx-auto">
             <div class="bg-gradient-to-br from-[#f8faf9] to-white rounded-3xl border border-[#c8e7d8]/30 p-8 md:p-12 shadow-sm">
                 <div class="w-16 h-16 bg-gradient-to-br from-[#c8e7d8] to-[#b0d4c0] rounded-full flex items-center justify-center mx-auto mb-6 shadow-md">
                     <svg class="w-8 h-8 text-[#4e5e72]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -486,7 +487,7 @@
             </div>
         </div>
 
-        <div class="text-center mt-12">
+        <div class="text-center mt-14">
             <a href="{{ route('contacto') }}" class="inline-flex items-center gap-3 px-10 py-4 bg-[#FC9B67] text-white font-bold rounded-full hover:bg-[#e88950] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-lg group">
                 Quiero mi galería
                 <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
