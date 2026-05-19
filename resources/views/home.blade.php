@@ -316,8 +316,8 @@
         </div>
 
         <div class="relative max-w-4xl mx-auto">
-            <div class="hidden md:block absolute left-[52px] lg:left-[60px] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#c8e7d8]/40 to-transparent"></div>
-            <div id="pr-line-fill" class="hidden md:block absolute left-[52px] lg:left-[60px] top-0 w-px bg-gradient-to-b from-[#FC9B67] via-[#c8e7d8] to-[#4e5e72]" style="height:0;"></div>
+            <div class="block md:block absolute left-[52px] lg:left-[60px] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#c8e7d8]/40 to-transparent"></div>
+            <div id="pr-line-fill" class="block md:block absolute left-[52px] lg:left-[60px] top-0 w-px bg-gradient-to-b from-[#FC9B67] via-[#c8e7d8] to-[#4e5e72]" style="height:0;"></div>
 
             <div>
                 <div class="pr-card mb-28 md:mb-40" data-delay="0">
@@ -337,8 +337,8 @@
                                 <div class="pr-glint"></div>
                                 <div class="p-6 md:p-8">
                                     <div class="flex items-start gap-5 md:gap-8">
-                                        <div class="pr-num hidden md:block flex-shrink-0">
-                                            <span class="text-8xl lg:text-9xl font-black text-[#c8e7d8]/25 select-none leading-none" style="line-height:.7;">01</span>
+                                        <div class="pr-num flex-shrink-0">
+                                            <span class="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black text-[#c8e7d8]/25 select-none leading-none" style="line-height:.7;">01</span>
                                         </div>
                                         <div class="pr-body flex-1">
                                             <span class="inline-block text-xs font-bold text-[#FC9B67] uppercase tracking-widest mb-2">Paso 1</span>
@@ -373,8 +373,8 @@
                                 <div class="pr-glint"></div>
                                 <div class="p-6 md:p-8">
                                     <div class="flex items-start gap-5 md:gap-8">
-                                        <div class="pr-num hidden md:block flex-shrink-0">
-                                            <span class="text-8xl lg:text-9xl font-black text-[#FC9B67]/20 select-none leading-none" style="line-height:.7;">02</span>
+                                        <div class="pr-num flex-shrink-0">
+                                            <span class="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black text-[#FC9B67]/20 select-none leading-none" style="line-height:.7;">02</span>
                                         </div>
                                         <div class="pr-body flex-1">
                                             <span class="inline-block text-xs font-bold text-[#FC9B67] uppercase tracking-widest mb-2">Paso 2</span>
@@ -412,8 +412,8 @@
                                 <div class="pr-glint"></div>
                                 <div class="p-6 md:p-8">
                                     <div class="flex items-start gap-5 md:gap-8">
-                                        <div class="pr-num hidden md:block flex-shrink-0">
-                                            <span class="text-8xl lg:text-9xl font-black text-[#4e5e72]/12 select-none leading-none" style="line-height:.7;">03</span>
+                                        <div class="pr-num flex-shrink-0">
+                                            <span class="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black text-[#4e5e72]/12 select-none leading-none" style="line-height:.7;">03</span>
                                         </div>
                                         <div class="pr-body flex-1">
                                             <span class="inline-block text-xs font-bold text-[#FC9B67] uppercase tracking-widest mb-2">Paso 3</span>
@@ -448,8 +448,8 @@
                                 <div class="pr-glint"></div>
                                 <div class="p-6 md:p-8">
                                     <div class="flex items-start gap-5 md:gap-8">
-                                        <div class="pr-num hidden md:block flex-shrink-0">
-                                            <span class="text-8xl lg:text-9xl font-black text-[#c8e7d8]/35 select-none leading-none" style="line-height:.7;">04</span>
+                                        <div class="pr-num flex-shrink-0">
+                                            <span class="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black text-[#c8e7d8]/35 select-none leading-none" style="line-height:.7;">04</span>
                                         </div>
                                         <div class="pr-body flex-1">
                                             <span class="inline-block text-xs font-bold text-[#FC9B67] uppercase tracking-widest mb-2">Paso 4</span>
