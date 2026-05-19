@@ -17,7 +17,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             @foreach ($images as $image)
             <div class="relative bg-white rounded-lg shadow-md overflow-hidden group">
-                <img src="{{ asset($image) }}" alt="Foto" class="w-full h-64 object-cover" loading="lazy">
+                <img src="{{ asset($image) }}" alt="Foto" class="w-full h-auto" loading="lazy">
                 <div class="checkbox-container absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
                     <input type="checkbox" name="selectedImages[]" value="{{ $image }}"
                            class="w-5 h-5 accent-[#FC9B67] cursor-pointer"

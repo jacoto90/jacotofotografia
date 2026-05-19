@@ -70,7 +70,7 @@
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 p-4">
         @foreach($allPhotos as $photo)
         <div class="relative group rounded-lg overflow-hidden border border-gray-200">
-            <img src="{{ $photo['url'] }}" alt="{{ $photo['name'] }}" class="w-full aspect-[4/3] object-cover">
+            <img src="{{ $photo['url'] }}" alt="{{ $photo['name'] }}" class="w-full h-auto">
             <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
                 @if(!$photo['is_cover'])
                 <form method="POST" action="{{ route('admin.books.photos.cover', $book->idbookfotos) }}" class="inline">
