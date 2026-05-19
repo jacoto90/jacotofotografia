@@ -213,14 +213,38 @@
 </section>
 
 {{-- Workflow --}}
-<section class="py-20 sm:py-28 bg-white relative overflow-hidden">
+<section class="py-20 sm:py-28 bg-white relative overflow-hidden" id="workflow-section">
+    <style>
+        .wf-hidden { opacity:0; transform:translateY(40px); }
+        .wf-left { opacity:0; transform:translateX(-50px); }
+        .wf-right { opacity:0; transform:translateX(50px); }
+        .wf-icon { opacity:0; transform:scale(0); }
+        .wf-visible { animation:wfFadeUp .8s ease forwards; }
+        .wf-left-visible { animation:wfSlideLeft .8s ease forwards; }
+        .wf-right-visible { animation:wfSlideRight .8s ease forwards; }
+        .wf-icon-visible { animation:wfScaleIn .6s ease forwards; }
+        .wf-line-progress { transition:height 1.4s ease; }
+        .wf-pulse { animation:wfPulse 2s ease-in-out infinite; }
+        .wf-delay-1 { animation-delay:.15s; }
+        .wf-delay-2 { animation-delay:.3s; }
+        .wf-delay-3 { animation-delay:.45s; }
+        .wf-delay-4 { animation-delay:.6s; }
+        .wf-delay-5 { animation-delay:.75s; }
+        @keyframes wfFadeUp { to { opacity:1; transform:translateY(0); } }
+        @keyframes wfSlideLeft { to { opacity:1; transform:translateX(0); } }
+        @keyframes wfSlideRight { to { opacity:1; transform:translateX(0); } }
+        @keyframes wfScaleIn { to { opacity:1; transform:scale(1); } }
+        @keyframes wfPulse { 0%,100% { box-shadow:0 0 0 0 rgba(78,94,114,.3); } 50% { box-shadow:0 0 0 14px rgba(78,94,114,0); } }
+        @keyframes wfLineGrow { from { height:0; } to { height:var(--target-height); } }
+    </style>
+
     <div class="absolute top-0 right-0 w-96 h-96 bg-[#c8e7d8]/10 rounded-full blur-3xl"></div>
     <div class="absolute bottom-0 left-0 w-80 h-80 bg-[#FC9B67]/5 rounded-full blur-3xl"></div>
     <div class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
-        <div class="text-center mb-16">
-            <span class="text-[#FC9B67] font-semibold text-sm uppercase tracking-widest">Valor diferencial</span>
-            <h2 class="text-3xl sm:text-4xl font-bold text-[#4e5e72] mt-3">Tus fotos hechas, y aquí las tienes</h2>
-            <p class="text-gray-500 text-base mt-4 max-w-2xl mx-auto leading-relaxed">
+        <div class="text-center mb-16 wf-hidden" data-animate="fade">
+            <span class="text-[#FC9B67] font-semibold text-base uppercase tracking-widest">Valor diferencial</span>
+            <h2 class="text-4xl sm:text-5xl font-bold text-[#4e5e72] mt-4 leading-tight">Tus fotos hechas,<br>y aquí las tienes</h2>
+            <p class="text-gray-500 text-lg mt-4 max-w-2xl mx-auto leading-relaxed">
                 Te hago las fotos, las edito y las subo a tu galería privada en esta web. 
                 Sin USBs, sin WeTransfer que caduca, sin tener que pedirme las fotos una a una. 
                 Todo online, siempre accesible, organizado y listo para descargar.
@@ -228,54 +252,55 @@
         </div>
 
         <div class="relative">
-            <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-[#c8e7d8] -translate-x-1/2"></div>
+            <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-[#c8e7d8]/30 -translate-x-1/2"></div>
+            <div id="wf-line-fill" class="hidden md:block absolute left-1/2 top-0 w-0.5 bg-gradient-to-b from-[#FC9B67] via-[#c8e7d8] to-[#4e5e72] -translate-x-1/2" style="height:0;"></div>
 
-            <div class="space-y-12 md:space-y-16">
-                <div class="relative flex flex-col md:flex-row items-center gap-8 md:gap-12">
+            <div class="space-y-16 md:space-y-20">
+                <div class="relative flex flex-col md:flex-row items-center gap-8 md:gap-12 wf-step" data-step="1">
                     <div class="hidden md:flex w-1/2 justify-end">
-                        <div class="text-right">
-                            <span class="text-sm font-bold text-[#FC9B67]">Paso 1</span>
-                            <h3 class="text-xl font-bold text-[#4e5e72] mt-1">La sesión de fotos</h3>
-                            <p class="text-gray-500 text-sm mt-2 leading-relaxed max-w-sm ml-auto">
+                        <div class="text-right wf-left" data-animate="left">
+                            <span class="text-base font-bold text-[#FC9B67]">Paso 1</span>
+                            <h3 class="text-2xl font-bold text-[#4e5e72] mt-1">La sesión de fotos</h3>
+                            <p class="text-gray-500 text-base mt-3 leading-relaxed max-w-sm ml-auto">
                                 Quedamos en el lugar que elijas — estudio, exterior, tu evento, lo que sea. 
                                 Trabajo con naturalidad para que te sientas cómodo y las fotos reflejen 
-                                quien eres de verdad. Sin poses forzadas, sin prisas.
+                                quién eres de verdad. Sin poses forzadas, sin prisas.
                             </p>
                         </div>
                     </div>
                     <div class="relative z-10 flex-shrink-0">
-                        <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-[#c8e7d8] to-[#b0d4c0] rounded-2xl flex items-center justify-center shadow-lg md:absolute md:left-1/2 md:-translate-x-1/2">
-                            <svg class="w-7 h-7 md:w-8 md:h-8 text-[#4e5e72]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-[#c8e7d8] to-[#b0d4c0] rounded-2xl flex items-center justify-center shadow-lg md:absolute md:left-1/2 md:-translate-x-1/2 wf-icon" data-animate="icon">
+                            <svg class="w-8 h-8 md:w-10 md:h-10 text-[#4e5e72]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.16a15.53 15.53 0 01-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z"/>
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0z"/>
                             </svg>
                         </div>
                     </div>
-                    <div class="md:hidden text-center">
-                        <span class="text-sm font-bold text-[#FC9B67]">Paso 1</span>
-                        <h3 class="text-xl font-bold text-[#4e5e72] mt-1">La sesión de fotos</h3>
-                        <p class="text-gray-500 text-sm mt-2 leading-relaxed">
+                    <div class="md:hidden text-center wf-hidden" data-animate="fade">
+                        <span class="text-base font-bold text-[#FC9B67]">Paso 1</span>
+                        <h3 class="text-2xl font-bold text-[#4e5e72] mt-1">La sesión de fotos</h3>
+                        <p class="text-gray-500 text-base mt-3 leading-relaxed">
                             Quedamos en el lugar que elijas — estudio, exterior, tu evento, lo que sea. 
                             Trabajo con naturalidad para que te sientas cómodo y las fotos reflejen 
-                            quien eres de verdad. Sin poses forzadas, sin prisas.
+                            quién eres de verdad. Sin poses forzadas, sin prisas.
                         </p>
                     </div>
                     <div class="hidden md:flex w-1/2"></div>
                 </div>
 
-                <div class="relative flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                <div class="relative flex flex-col md:flex-row items-center gap-8 md:gap-12 wf-step" data-step="2">
                     <div class="hidden md:flex w-1/2"></div>
                     <div class="relative z-10 flex-shrink-0">
-                        <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-[#FC9B67] to-[#e88950] rounded-2xl flex items-center justify-center shadow-lg md:absolute md:left-1/2 md:-translate-x-1/2">
-                            <svg class="w-7 h-7 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-[#FC9B67] to-[#e88950] rounded-2xl flex items-center justify-center shadow-lg md:absolute md:left-1/2 md:-translate-x-1/2 wf-icon" data-animate="icon">
+                            <svg class="w-8 h-8 md:w-10 md:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"/>
                             </svg>
                         </div>
                     </div>
-                    <div class="text-center md:text-left md:w-1/2">
-                        <span class="text-sm font-bold text-[#FC9B67]">Paso 2</span>
-                        <h3 class="text-xl font-bold text-[#4e5e72] mt-1">Edición profesional</h3>
-                        <p class="text-gray-500 text-sm mt-2 leading-relaxed md:max-w-sm">
+                    <div class="text-center md:text-left md:w-1/2 wf-right" data-animate="right">
+                        <span class="text-base font-bold text-[#FC9B67]">Paso 2</span>
+                        <h3 class="text-2xl font-bold text-[#4e5e72] mt-1">Edición profesional</h3>
+                        <p class="text-gray-500 text-base mt-3 leading-relaxed md:max-w-sm">
                             Selecciono las mejores tomas y las edito una a una con mimo: 
                             ajuste de color, luz, encuadre y retoque si es necesario. 
                             Cada foto sale con la calidad que merece tu recuerdo. 
@@ -284,12 +309,12 @@
                     </div>
                 </div>
 
-                <div class="relative flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                <div class="relative flex flex-col md:flex-row items-center gap-8 md:gap-12 wf-step" data-step="3">
                     <div class="hidden md:flex w-1/2 justify-end">
-                        <div class="text-right">
-                            <span class="text-sm font-bold text-[#FC9B67]">Paso 3</span>
-                            <h3 class="text-xl font-bold text-[#4e5e72] mt-1">Galería privada online</h3>
-                            <p class="text-gray-500 text-sm mt-2 leading-relaxed max-w-sm ml-auto">
+                        <div class="text-right wf-left" data-animate="left">
+                            <span class="text-base font-bold text-[#FC9B67]">Paso 3</span>
+                            <h3 class="text-2xl font-bold text-[#4e5e72] mt-1">Galería privada online</h3>
+                            <p class="text-gray-500 text-base mt-3 leading-relaxed max-w-sm ml-auto">
                                 Recibes un enlace único con tu contraseña personal para acceder 
                                 a tu galería desde cualquier dispositivo. Sin registros, sin apps, 
                                 sin complicaciones. Tus fotos organizadas y protegidas, solo visibles 
@@ -298,17 +323,17 @@
                         </div>
                     </div>
                     <div class="relative z-10 flex-shrink-0">
-                        <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-[#4e5e72] to-[#3d4a5a] rounded-2xl flex items-center justify-center shadow-lg md:absolute md:left-1/2 md:-translate-x-1/2">
-                            <svg class="w-7 h-7 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-[#4e5e72] to-[#3d4a5a] rounded-2xl flex items-center justify-center shadow-lg md:absolute md:left-1/2 md:-translate-x-1/2 wf-icon" data-animate="icon">
+                            <svg class="w-8 h-8 md:w-10 md:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/>
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                             </svg>
                         </div>
                     </div>
-                    <div class="md:hidden text-center">
-                        <span class="text-sm font-bold text-[#FC9B67]">Paso 3</span>
-                        <h3 class="text-xl font-bold text-[#4e5e72] mt-1">Galería privada online</h3>
-                        <p class="text-gray-500 text-sm mt-2 leading-relaxed">
+                    <div class="md:hidden text-center wf-hidden" data-animate="fade">
+                        <span class="text-base font-bold text-[#FC9B67]">Paso 3</span>
+                        <h3 class="text-2xl font-bold text-[#4e5e72] mt-1">Galería privada online</h3>
+                        <p class="text-gray-500 text-base mt-3 leading-relaxed">
                             Recibes un enlace único con tu contraseña personal para acceder 
                             a tu galería desde cualquier dispositivo. Sin registros, sin apps, 
                             sin complicaciones. Tus fotos organizadas y protegidas, solo visibles 
@@ -317,19 +342,19 @@
                     </div>
                 </div>
 
-                <div class="relative flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                <div class="relative flex flex-col md:flex-row items-center gap-8 md:gap-12 wf-step" data-step="4">
                     <div class="hidden md:flex w-1/2"></div>
                     <div class="relative z-10 flex-shrink-0">
-                        <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-[#c8e7d8] to-[#b0d4c0] rounded-2xl flex items-center justify-center shadow-lg md:absolute md:left-1/2 md:-translate-x-1/2">
-                            <svg class="w-7 h-7 md:w-8 md:h-8 text-[#4e5e72]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-[#c8e7d8] to-[#b0d4c0] rounded-2xl flex items-center justify-center shadow-lg md:absolute md:left-1/2 md:-translate-x-1/2 wf-icon" data-animate="icon">
+                            <svg class="w-8 h-8 md:w-10 md:h-10 text-[#4e5e72]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"/>
                             </svg>
                         </div>
                     </div>
-                    <div class="text-center md:text-left md:w-1/2">
-                        <span class="text-sm font-bold text-[#FC9B67]">Paso 4</span>
-                        <h3 class="text-xl font-bold text-[#4e5e72] mt-1">Descarga directa</h3>
-                        <p class="text-gray-500 text-sm mt-2 leading-relaxed md:max-w-sm">
+                    <div class="text-center md:text-left md:w-1/2 wf-right" data-animate="right">
+                        <span class="text-base font-bold text-[#FC9B67]">Paso 4</span>
+                        <h3 class="text-2xl font-bold text-[#4e5e72] mt-1">Descarga directa</h3>
+                        <p class="text-gray-500 text-base mt-3 leading-relaxed md:max-w-sm">
                             Elige las fotos que más te gusten y descárgalas en alta resolución 
                             con un clic. También puedes descargar el álbum completo en ZIP. 
                             Sin límites, sin caducidad. Tus fotos, siempre disponibles.
@@ -339,26 +364,80 @@
             </div>
         </div>
 
-        <div class="text-center mt-16 p-8 bg-[#f8faf9] rounded-2xl border border-[#c8e7d8]/30 max-w-3xl mx-auto">
-            <div class="w-12 h-12 bg-[#c8e7d8] rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg class="w-6 h-6 text-[#4e5e72]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="text-center mt-16 p-8 md:p-10 bg-[#f8faf9] rounded-2xl border border-[#c8e7d8]/30 max-w-3xl mx-auto wf-hidden" data-animate="fade">
+            <div class="w-14 h-14 bg-[#c8e7d8] rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-7 h-7 text-[#4e5e72]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>
                 </svg>
             </div>
-            <p class="text-[#4e5e72] font-semibold text-base leading-relaxed">
+            <p class="text-[#4e5e72] font-semibold text-lg leading-relaxed">
                 Mientras otros fotógrafos te mandan un USB o un link de WeTransfer que caduca a los pocos días, 
                 aquí tus fotos tienen su propio espacio en la web, siempre accesibles, siempre tuyas. 
                 <strong>Eso no lo hace todo el mundo.</strong>
             </p>
         </div>
 
-        <div class="text-center mt-10">
-            <a href="{{ route('contacto') }}" class="inline-flex items-center gap-2 px-8 py-3.5 bg-[#FC9B67] text-white font-semibold rounded-full hover:bg-[#e88950] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+        <div class="text-center mt-10 wf-hidden" data-animate="fade">
+            <a href="{{ route('contacto') }}" class="inline-flex items-center gap-2 px-10 py-4 bg-[#FC9B67] text-white font-bold rounded-full hover:bg-[#e88950] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-lg">
                 Quiero mi galería
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </a>
         </div>
     </div>
+
+    <script>
+        (function(){
+            var section = document.getElementById('workflow-section');
+            var animTargets = section.querySelectorAll('[data-animate]');
+            var lineFill = document.getElementById('wf-line-fill');
+            var lineContainer = lineFill ? lineFill.parentElement : null;
+
+            function isInView(el, offset) {
+                offset = offset || 0.8;
+                var rect = el.getBoundingClientRect();
+                var vh = window.innerHeight;
+                return rect.top < vh * offset && rect.bottom > 0;
+            }
+
+            function updateLine() {
+                if (!lineFill || !lineContainer) return;
+                var steps = section.querySelectorAll('.wf-step');
+                var firstStep = steps[0];
+                var lastStep = steps[steps.length - 1];
+                if (!firstStep || !lastStep) return;
+                var containerRect = lineContainer.getBoundingClientRect();
+                var firstRect = firstStep.getBoundingClientRect();
+                var lastRect = lastStep.getBoundingClientRect();
+                var startY = firstRect.top - containerRect.top + firstRect.height / 2;
+                var endY = lastRect.top - containerRect.top + lastRect.height / 2;
+                var totalH = endY - startY;
+                var scrolled = Math.min(Math.max((window.innerHeight * 0.7 - firstRect.top) / (firstRect.top + firstRect.height - window.innerHeight * 0.7 + totalH), 0), 1);
+                lineFill.style.height = Math.max(0, (startY + totalH * scrolled) - startY) + 'px';
+                lineFill.style.top = startY + 'px';
+            }
+
+            function animate() {
+                animTargets.forEach(function(el) {
+                    if (isInView(el) && !el.classList.contains('done')) {
+                        el.classList.add('done');
+                        var anim = el.dataset.animate;
+                        if (anim === 'fade') el.classList.add('wf-visible');
+                        else if (anim === 'left') el.classList.add('wf-left-visible');
+                        else if (anim === 'right') el.classList.add('wf-right-visible');
+                        else if (anim === 'icon') {
+                            el.classList.add('wf-icon-visible');
+                            setTimeout(function(){ el.classList.add('wf-pulse'); }, 700);
+                        }
+                    }
+                });
+                updateLine();
+            }
+
+            window.addEventListener('scroll', animate, { passive: true });
+            window.addEventListener('resize', animate, { passive: true });
+            animate();
+        })();
+    </script>
 </section>
 
 {{-- Gallery --}}
