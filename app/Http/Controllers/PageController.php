@@ -182,4 +182,9 @@ class PageController extends Controller
     {
         return view('proteccion-datos');
     }
+
+    public function politicaCookies()
+    {
+        return view('politica-cookies');
+    }
 }

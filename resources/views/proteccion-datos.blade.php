@@ -66,8 +66,9 @@
             <p>Esta política fue actualizada por última vez en <strong>mayo de 2026</strong>. Cualquier cambio será reflejado en esta misma página.</p>
         </section>
 
-        <div class="border-t pt-4 text-center text-xs text-gray-400">
-            <p>Jacoto Fotografía &copy; {{ date('Y') }} &middot; José Antonio Coto Martínez</p>
+        <div class="border-t pt-4 text-center text-xs text-gray-400 space-y-1">
+            <p>Jacoto Fotografía &copy; {{ date('Y') }} &middot; José Ángel Colmena Tomás</p>
+            <p><a href="{{ route('politica.cookies') }}" class="text-blue-600 hover:underline">Política de Cookies</a></p>
         </div>
     </div>
 </div>

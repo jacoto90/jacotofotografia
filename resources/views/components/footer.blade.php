@@ -1,6 +1,6 @@
 <footer class="bg-[#4e5e72] text-white/80 mt-auto">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
                 <img src="{{ asset('img/logoJacoto.png') }}" alt="Jacoto Fotografia" class="h-10 brightness-0 invert opacity-90 mb-4">
                 <p class="text-sm text-white/60 leading-relaxed">
@@ -14,6 +14,13 @@
                     <li><a href="{{ route('clientes') }}" class="text-sm text-white/60 hover:text-[#FC9B67] transition-colors">Clientes</a></li>
                     <li><a href="{{ route('jacoto') }}" class="text-sm text-white/60 hover:text-[#FC9B67] transition-colors">Jacoto</a></li>
                     <li><a href="{{ route('contacto') }}" class="text-sm text-white/60 hover:text-[#FC9B67] transition-colors">Contacto</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Legal</h4>
+                <ul class="space-y-2">
+                    <li><a href="{{ route('proteccion.datos') }}" class="text-sm text-white/60 hover:text-[#FC9B67] transition-colors">Protección de Datos</a></li>
+                    <li><a href="{{ route('politica.cookies') }}" class="text-sm text-white/60 hover:text-[#FC9B67] transition-colors">Política de Cookies</a></li>
                 </ul>
             </div>
             <div>
