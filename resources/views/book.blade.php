@@ -18,7 +18,7 @@
             @foreach ($images as $image)
             <div class="relative bg-white rounded-lg shadow-md overflow-hidden group">
                 <img src="{{ asset($image) }}" alt="Foto" class="w-full h-64 object-cover" loading="lazy">
-                <div class="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div class="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 has-[:checked]:opacity-100 transition-opacity">
                     <input type="checkbox" name="selectedImages[]" value="{{ $image }}"
                            class="w-5 h-5 accent-[#FC9B67] cursor-pointer"
                            title="Seleccionar para descargar">
