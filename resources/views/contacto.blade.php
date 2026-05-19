@@ -26,8 +26,15 @@
     </div>
     @endif
 
+    @if(session('error'))
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 text-sm">
+        {{ session('error') }}
+    </div>
+    @endif
+
     <form action="{{ route('contacto.enviar') }}" method="POST">
         @csrf
+        <input type="hidden" name="_t" value="{{ time() }}">
         <h1 class="text-2xl text-center mb-6 font-['Dancing_Script']">Contacto</h1>
 
         <div class="mb-4">

@@ -111,20 +111,62 @@ class PageController extends Controller
     public function contactoEnviar(Request $request)
     {
         $request->validate([
-            'name' => 'required|min:3',
-            'cname' => 'required|min:3',
+            'name' => 'required|min:3|max:40',
+            'cname' => 'required|min:3|max:60',
             'mobil' => 'required|regex:/^[67][0-9]{8}$/',
-            'email' => 'required|email',
-            'mensaje' => 'required|min:10',
+            'email' => 'required|email|max:80',
+            'mensaje' => 'required|min:10|max:1000',
         ], [
             'mobil.regex' => 'El teléfono debe comenzar por 6 o 7 y tener 9 dígitos.',
+            'mensaje.max' => 'El mensaje no puede superar 1000 caracteres.',
         ]);
+
+        // Honeypot check
+        if (!empty($request->localidad)) {
+            return redirect()->route('contacto')->with('success', 'Mensaje enviado correctamente. Le contestaremos en breve.');
+        }
+
+        // Time gate: reject if submitted in under 3 seconds (bots)
+        $submittedAt = $request->input('_t');
+        if (!$submittedAt || (time() - intval($submittedAt) < 3)) {
+            return redirect()->route('contacto')->with('error', 'Hubo un error al enviar el mensaje. Inténtalo de nuevo.');
+        }
+
+        // Email MX DNS check
+        $domain = substr(strrchr($request->email, '@'), 1);
+        if (!$domain || !checkdnsrr($domain, 'MX')) {
+            return redirect()->route('contacto')->with('error', 'El dominio del email no existe o no recibe correos.');
+        }
+
+        // Message coherence checks
+        $mensaje = $request->mensaje;
+
+        // Block if >50% of message is uppercase (shouting/spam)
+        $upperRatio = mb_strlen(preg_replace('/[^A-ZÑÁÉÍÓÚ]/u', '', $mensaje)) / max(mb_strlen(preg_replace('/[^a-zA-ZáéíóúñÁÉÍÓÚÑ\s]/u', '', $mensaje)), 1);
+        if ($upperRatio > 0.5 && mb_strlen($mensaje) > 20) {
+            return redirect()->route('contacto')->with('error', 'El mensaje no puede estar escrito mayoritariamente en mayúsculas.');
+        }
+
+        // Block if >3 links (common spam pattern)
+        preg_match_all('/https?:\/\/[^\s]+/', $mensaje, $links);
+        if (count($links[0]) > 3) {
+            return redirect()->route('contacto')->with('error', 'El mensaje contiene demasiados enlaces.');
+        }
+
+        // Block gibberish: repeated single char >60% of message
+        $chars = count_chars($mensaje, 1);
+        if ($chars) {
+            $maxFreq = max($chars);
+            if ($maxFreq / mb_strlen($mensaje) > 0.6) {
+                return redirect()->route('contacto')->with('error', 'El mensaje no parece válido.');
+            }
+        }
 
         Visitante::create([
             'nombre' => $request->name,
             'apellido' => $request->cname,
             'email' => $request->email,
-            'mensaje' => $request->mensaje,
+            'mensaje' => $mensaje,
             'mobil' => $request->mobil,
         ]);
 
