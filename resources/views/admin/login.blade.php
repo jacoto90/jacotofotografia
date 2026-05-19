@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin Login - Jacoto Fotografía</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @fluxAppearance
+    <style>:root{color-scheme:light}</style>
+    <script>window.localStorage.setItem('flux.appearance','light');if(window.Flux)window.Flux.applyAppearance('light');</script>
 </head>
 <body class="bg-[#c8e7d8] min-h-screen flex items-center justify-center">
     <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
@@ -34,5 +35,6 @@
         </form>
     </div>
     @fluxScripts
+    <script>window.localStorage.setItem('flux.appearance','light');document.documentElement.classList.remove('dark');document.documentElement.style.setProperty('color-scheme','light');</script>
 </body>
 </html>

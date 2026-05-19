@@ -12,24 +12,16 @@ class PageController extends Controller
 {
     public function home()
     {
-        $path = public_path();
-        $carruselDirs = ['carrusel0', 'carrusel1'];
-
         $carousel1 = [];
         $carousel2 = [];
 
-        if (is_dir($base = resource_path('oldweb'))) {
-            foreach (['carrusel0', 'carrusel1'] as $i => $dir) {
-                $dirPath = $base . DIRECTORY_SEPARATOR . $dir;
-                if (is_dir($dirPath)) {
-                    $files = array_values(array_diff(scandir($dirPath), ['.', '..']));
-                    $var = $i === 0 ? 'carousel1' : 'carousel2';
-                    foreach ($files as $file) {
-                        $relativePath = $dir . '/' . $file;
-                        if (file_exists($base . DIRECTORY_SEPARATOR . $relativePath)) {
-                            $$var[] = $relativePath;
-                        }
-                    }
+        foreach (['carrusel0', 'carrusel1'] as $i => $dir) {
+            $dirPath = public_path($dir);
+            if (is_dir($dirPath)) {
+                $files = array_values(array_diff(scandir($dirPath), ['.', '..']));
+                $var = $i === 0 ? 'carousel1' : 'carousel2';
+                foreach ($files as $file) {
+                    $$var[] = $dir . '/' . $file;
                 }
             }
         }
@@ -55,12 +47,10 @@ class PageController extends Controller
             return redirect()->route('clientes');
         }
 
-        $base = resource_path('oldweb');
-        $dirPath = $base . DIRECTORY_SEPARATOR . $book->nombrebook;
         $images = [];
-
         $extensions = ['jpg', 'jpeg', 'gif', 'png', 'bmp'];
 
+        $dirPath = public_path($book->nombrebook);
         if (is_dir($dirPath)) {
             $files = scandir($dirPath);
             foreach ($files as $file) {
@@ -93,13 +83,12 @@ class PageController extends Controller
     {
         $request->validate(['selectedImages' => 'required|array', 'book_id' => 'required|integer']);
 
-        $base = resource_path('oldweb');
         $zip = new \ZipArchive();
         $zipName = tempnam(sys_get_temp_dir(), 'fotos_') . '.zip';
         $zip->open($zipName, \ZipArchive::CREATE);
 
         foreach ($request->selectedImages as $image) {
-            $imagePath = $base . DIRECTORY_SEPARATOR . $image;
+            $imagePath = public_path($image);
             if (file_exists($imagePath)) {
                 $zip->addFile($imagePath, basename($image));
             }

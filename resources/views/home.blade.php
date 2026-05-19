@@ -188,7 +188,12 @@
 </section>
 
 {{-- Gallery --}}
-@if(count($carousel1) > 0 || count($carousel2) > 0)
+@php
+    $allGalleryImages = array_merge($carousel1, $carousel2);
+    shuffle($allGalleryImages);
+    $galleryImages = array_slice($allGalleryImages, 0, 9);
+@endphp
+@if(count($galleryImages) > 0)
 <section class="py-20 sm:py-28 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
         <div class="text-center mb-16">
@@ -196,11 +201,6 @@
             <h2 class="text-3xl sm:text-4xl font-bold text-[#4e5e72] mt-3">Momentos capturados</h2>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            @php
-                $allImages = array_merge($carousel1, $carousel2);
-                shuffle($allImages);
-                $galleryImages = array_slice($allImages, 0, 9);
-            @endphp
             @foreach($galleryImages as $index => $image)
             <div class="gallery-item {{ $index === 0 ? 'col-span-2 row-span-2' : '' }}" onclick="openLightbox({{ $index }})">
                 <img src="{{ asset($image) }}" alt="Jacoto Fotografía" loading="lazy" class="{{ $index === 0 ? 'h-full' : 'h-48 sm:h-56' }}">
@@ -295,6 +295,7 @@
         </a>
     </div>
 </section>
+@if(count($galleryImages) > 0)
 @push('scripts')
 <script>
     const lightboxImages = @json(array_map(fn($img) => asset($img), $galleryImages));
@@ -356,4 +357,5 @@
     </div>
     <div class="absolute bottom-6 text-white/50 text-sm">(<span id="lightbox-counter">1</span>/<span id="lightbox-total">1</span>)</div>
 </div>
+@endif
 @endsection

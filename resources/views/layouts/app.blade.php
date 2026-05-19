@@ -16,7 +16,8 @@
     </script>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @fluxAppearance
+    <style>:root{color-scheme:light}</style>
+    <script>window.localStorage.setItem('flux.appearance','light');if(window.Flux)window.Flux.applyAppearance('light');</script>
 </head>
 <body class="bg-[#f4f4f4] text-[#4e5e72] font-sans antialiased min-h-screen flex flex-col">
 
@@ -29,6 +30,7 @@
     <x-footer />
 
     @fluxScripts
+    <script>window.localStorage.setItem('flux.appearance','light');document.documentElement.classList.remove('dark');document.documentElement.style.setProperty('color-scheme','light');</script>
 
     @stack('scripts')
 </body>

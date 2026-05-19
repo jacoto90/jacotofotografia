@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Admin') - Jacoto Fotografía</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @fluxAppearance
+    <style>:root{color-scheme:light}</style>
+    <script>window.localStorage.setItem('flux.appearance','light');if(window.Flux)window.Flux.applyAppearance('light');</script>
     <style>
         dialog[open] { background: #fff; }
+        [data-flux-navlist-item] a, [data-flux-sidebar-brand] a { color: #4e5e72 !important; }
+        [data-flux-navlist-item] a:hover { color: #FC9B67 !important; }
     </style>
 </head>
 <body class="bg-gray-100 text-[#4e5e72] font-sans antialiased min-h-screen flex flex-col lg:flex-row">
@@ -24,7 +27,7 @@
             <span class="text-sm font-semibold">Admin</span>
         </div>
         <div class="flex items-center gap-3">
-            <a href="{{ route('home') }}" class="text-xs text-[#4e5e72] hover:text-[#FC9B67] font-medium">Web</a>
+            <a href="{{ route('home') }}" style="color:#4e5e72!important" class="text-xs hover:text-[#FC9B67] font-medium">Web</a>
             <form action="{{ route('logout') }}" method="POST" class="inline">@csrf
                 <button type="submit" class="text-xs text-red-600 hover:text-red-800 font-medium">Salir</button>
             </form>
@@ -32,7 +35,7 @@
     </div>
 
     <flux:sidebar stashable sticky class="border-r border-[#c8e7d8]">
-        <flux:sidebar.brand href="{{ route('admin.dashboard') }}" name="Admin">
+        <flux:sidebar.brand href="{{ route('admin.dashboard') }}">
             <img src="{{ asset('img/logoJacoto.png') }}" alt="Jacoto" class="h-8">
         </flux:sidebar.brand>
 
@@ -77,15 +80,24 @@
 
     @fluxScripts
     <script>
+    window.localStorage.setItem('flux.appearance','light');
     (function() {
-        function fixBg() {
-            document.querySelectorAll('ui-sidebar, [data-flux-sidebar], dialog[open], [data-flux-flyout]').forEach(function(el) {
-                el.style.setProperty('background', '#fff', 'important');
+        function fixAdmin() {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.style.setProperty('color-scheme','light');
+            document.querySelectorAll('ui-sidebar, [data-flux-sidebar], [data-flux-navlist-item], dialog, [data-flux-flyout]').forEach(function(el) {
+                el.style.setProperty('background','#fff','important');
+                el.style.setProperty('color','#4e5e72','important');
+            });
+            document.querySelectorAll('[data-flux-navlist-item] a, [data-flux-sidebar-brand] a, [data-flux-sidebar-brand]').forEach(function(el) {
+                el.style.setProperty('color','#4e5e72','important');
+            });
+            document.querySelectorAll('[data-flux-navlist-item] a:hover').forEach(function(el) {
+                el.style.setProperty('color','#FC9B67','important');
             });
         }
-        fixBg();
-        var observer = new MutationObserver(fixBg);
-        observer.observe(document.documentElement, { attributes: true, childList: true, subtree: true });
+        fixAdmin();
+        new MutationObserver(fixAdmin).observe(document.documentElement, { attributes: true, childList: true, subtree: true });
     })();
     </script>
 </body>

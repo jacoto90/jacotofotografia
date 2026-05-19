@@ -266,20 +266,31 @@ class AdminController extends Controller
         return back()->withErrors(['photo' => 'La foto no existe.']);
     }
 
-    public function booksSetCover($id, $photo)
+    public function booksSetCover(Request $request, $id)
     {
         $book = Bookfoto::findOrFail($id);
-        $disk = Storage::disk('public');
-        $photoDir = 'books/' . $book->idbookfotos;
+        $photo = $request->input('photo');
+        $source = $request->input('source', 'uploaded');
 
-        $src = $photoDir . '/' . $photo;
-        $dst = $photoDir . '/foto_portada.jpg';
-
-        if (!$disk->exists($src)) {
-            return back()->withErrors(['photo' => 'La foto no existe.']);
+        if ($source === 'FTP') {
+            $src = public_path($book->nombrebook . '/' . $photo);
+            $dst = public_path($book->nombrebook . '/foto_portada.jpg');
+            if (!file_exists($src)) {
+                return back()->withErrors(['photo' => 'La foto no existe.']);
+            }
+            if (!copy($src, $dst)) {
+                return back()->withErrors(['photo' => 'Error al copiar la foto.']);
+            }
+        } else {
+            $disk = Storage::disk('public');
+            $photoDir = 'books/' . $book->idbookfotos;
+            $src = $photoDir . '/' . $photo;
+            $dst = $photoDir . '/foto_portada.jpg';
+            if (!$disk->exists($src)) {
+                return back()->withErrors(['photo' => 'La foto no existe.']);
+            }
+            $disk->copy($src, $dst);
         }
-
-        $disk->copy($src, $dst);
 
         return back()->with('success', 'Portada actualizada.');
     }

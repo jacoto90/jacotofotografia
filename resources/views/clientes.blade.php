@@ -13,16 +13,23 @@
              class="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:scale-[1.03] transition-transform duration-300"
              onclick="openModal({{ $book->idbookfotos }}, '{{ $book->nombrebook }}')">
             @php
-                $portada = resource_path('oldweb/' . $book->nombrebook . '/foto_portada.jpg');
-                $portadaUploaded = public_path('storage/books/' . $book->idbookfotos . '/foto_portada.jpg');
-                $src = asset('noimage.jpg');
-                if (file_exists($portada)) {
-                    $src = asset($book->nombrebook . '/foto_portada.jpg');
-                } elseif (file_exists($portadaUploaded)) {
-                    $src = asset('storage/books/' . $book->idbookfotos . '/foto_portada.jpg');
+                $coverFtp = public_path($book->nombrebook . '/foto_portada.jpg');
+                $coverUploaded = public_path('storage/books/' . $book->idbookfotos . '/foto_portada.jpg');
+                $src = '';
+                $v = '';
+                if (file_exists($coverFtp)) {
+                    $v = filemtime($coverFtp);
+                    $src = asset($book->nombrebook . '/foto_portada.jpg') . '?v=' . $v;
+                } elseif (file_exists($coverUploaded)) {
+                    $v = filemtime($coverUploaded);
+                    $src = asset('storage/books/' . $book->idbookfotos . '/foto_portada.jpg') . '?v=' . $v;
                 }
             @endphp
+            @if($src)
             <img src="{{ $src }}" alt="{{ $book->nombrebook }}" class="w-full h-48 object-cover" loading="lazy">
+            @else
+            <div class="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-400 text-sm">Sin portada</div>
+            @endif
             <div class="p-4 text-center">
                 <h5 class="font-semibold text-[#4e5e72]">{{ $book->nombrebook }}</h5>
             </div>

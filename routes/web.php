@@ -37,5 +37,5 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::delete('/books/{id}', [AdminController::class, 'booksDestroy'])->name('books.destroy');
     Route::post('/books/{id}/photos/upload', [AdminController::class, 'booksUploadPhotos'])->name('books.photos.upload');
     Route::delete('/books/{id}/photos', [AdminController::class, 'booksDeletePhoto'])->name('books.photos.delete');
-    Route::post('/books/{id}/photos/{photo}/cover', [AdminController::class, 'booksSetCover'])->name('books.photos.cover');
+    Route::post('/books/{id}/photos/cover', [AdminController::class, 'booksSetCover'])->name('books.photos.cover');
 });

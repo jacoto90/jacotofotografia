@@ -36,9 +36,9 @@
                 <td class="p-3">
                     <form action="{{ route('admin.mensajes.toggle', $m->id) }}" method="POST">
                         @csrf
-                        <flux:button type="submit" size="sm" variant="ghost">
+                        <button type="submit" style="padding:4px 10px;border-radius:6px;border:1px solid #c8e7d8;color:#4e5e72!important;font-size:13px;cursor:pointer;background:none;white-space:nowrap">
                             {{ $m->gestionado ? 'Pendiente' : 'Gestionado' }}
-                        </flux:button>
+                        </button>
                     </form>
                 </td>
             </tr>

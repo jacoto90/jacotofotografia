@@ -28,18 +28,21 @@
         <tbody>
             @forelse($books as $b)
             @php
-                $coverPublic = public_path($b->nombrebook . '/foto_portada.jpg');
+                $coverPath = public_path($b->nombrebook . '/foto_portada.jpg');
                 $coverUploaded = public_path('storage/books/' . $b->idbookfotos . '/foto_portada.jpg');
                 $coverUrl = '';
-                if (file_exists($coverPublic)) {
-                    $coverUrl = asset($b->nombrebook . '/foto_portada.jpg');
+                $coverTs = '';
+                if (file_exists($coverPath)) {
+                    $coverTs = filemtime($coverPath);
+                    $coverUrl = asset($b->nombrebook . '/foto_portada.jpg') . '?v=' . $coverTs;
                 } elseif (file_exists($coverUploaded)) {
-                    $coverUrl = asset('storage/books/' . $b->idbookfotos . '/foto_portada.jpg');
+                    $coverTs = filemtime($coverUploaded);
+                    $coverUrl = asset('storage/books/' . $b->idbookfotos . '/foto_portada.jpg') . '?v=' . $coverTs;
                 }
                 $photoCount = 0;
-                $oldwebDir = resource_path('oldweb/' . $b->nombrebook);
-                if (is_dir($oldwebDir)) {
-                    $photoCount = count(array_filter(scandir($oldwebDir), fn($f) => in_array(strtolower(pathinfo($f, PATHINFO_EXTENSION)), ['jpg','jpeg','png','gif'])));
+                $bookDir = public_path($b->nombrebook);
+                if (is_dir($bookDir)) {
+                    $photoCount = count(array_filter(scandir($bookDir), fn($f) => in_array(strtolower(pathinfo($f, PATHINFO_EXTENSION)), ['jpg','jpeg','png','gif'])));
                 }
             @endphp
             <tr class="border-t border-gray-100 hover:bg-gray-50">
@@ -56,12 +59,12 @@
                 <td class="p-3">{{ $photoCount }}</td>
                 <td class="p-3 text-xs">{{ $b->created_at->format('d/m/Y') }}</td>
                 <td class="p-3">
-                    <div class="flex items-center gap-1">
-                        <flux:button as="a" href="{{ route('admin.books.show', $b->idbookfotos) }}" size="sm" variant="ghost" icon-trailing="photo">Fotos</flux:button>
-                        <flux:button as="a" href="{{ route('admin.books.edit', $b->idbookfotos) }}" size="sm" variant="ghost" icon-trailing="pencil">Editar</flux:button>
+                    <div class="flex items-center gap-2">
+                        <a href="{{ route('admin.books.show', $b->idbookfotos) }}" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:6px;border:1px solid #c8e7d8;color:#4e5e72!important;font-size:13px;text-decoration:none;white-space:nowrap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>Fotos</a>
+                        <a href="{{ route('admin.books.edit', $b->idbookfotos) }}" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:6px;border:1px solid #c8e7d8;color:#4e5e72!important;font-size:13px;text-decoration:none;white-space:nowrap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>Editar</a>
                         <form action="{{ route('admin.books.destroy', $b->idbookfotos) }}" method="POST" class="inline" onsubmit="return confirm('¿Eliminar este book? Las fotos no se borrarán del servidor.')">
                             @csrf @method('DELETE')
-                            <flux:button type="submit" size="sm" variant="ghost" icon-trailing="trash" class="text-red-600 hover:text-red-800">Eliminar</flux:button>
+                            <button type="submit" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:6px;border:1px solid #fca5a5;color:#dc2626!important;font-size:13px;cursor:pointer;background:none"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>Eliminar</button>
                         </form>
                     </div>
                 </td>
@@ -76,18 +79,21 @@
 <div class="md:hidden space-y-4">
     @forelse($books as $b)
     @php
-        $coverPublic = public_path($b->nombrebook . '/foto_portada.jpg');
+        $coverPath = public_path($b->nombrebook . '/foto_portada.jpg');
         $coverUploaded = public_path('storage/books/' . $b->idbookfotos . '/foto_portada.jpg');
         $coverUrl = '';
-        if (file_exists($coverPublic)) {
-            $coverUrl = asset($b->nombrebook . '/foto_portada.jpg');
+        $coverTs = '';
+        if (file_exists($coverPath)) {
+            $coverTs = filemtime($coverPath);
+            $coverUrl = asset($b->nombrebook . '/foto_portada.jpg') . '?v=' . $coverTs;
         } elseif (file_exists($coverUploaded)) {
-            $coverUrl = asset('storage/books/' . $b->idbookfotos . '/foto_portada.jpg');
+            $coverTs = filemtime($coverUploaded);
+            $coverUrl = asset('storage/books/' . $b->idbookfotos . '/foto_portada.jpg') . '?v=' . $coverTs;
         }
         $photoCount = 0;
-        $oldwebDir = resource_path('oldweb/' . $b->nombrebook);
-        if (is_dir($oldwebDir)) {
-            $photoCount = count(array_filter(scandir($oldwebDir), fn($f) => in_array(strtolower(pathinfo($f, PATHINFO_EXTENSION)), ['jpg','jpeg','png','gif'])));
+        $bookDir = public_path($b->nombrebook);
+        if (is_dir($bookDir)) {
+            $photoCount = count(array_filter(scandir($bookDir), fn($f) => in_array(strtolower(pathinfo($f, PATHINFO_EXTENSION)), ['jpg','jpeg','png','gif'])));
         }
     @endphp
     <div class="bg-white rounded-lg shadow-sm overflow-hidden">
@@ -107,11 +113,11 @@
             </div>
         </div>
         <div class="flex border-t border-gray-100 divide-x divide-gray-100">
-            <flux:button as="a" href="{{ route('admin.books.show', $b->idbookfotos) }}" size="sm" variant="ghost" class="flex-1 justify-center rounded-none">Fotos</flux:button>
-            <flux:button as="a" href="{{ route('admin.books.edit', $b->idbookfotos) }}" size="sm" variant="ghost" class="flex-1 justify-center rounded-none">Editar</flux:button>
+            <a href="{{ route('admin.books.show', $b->idbookfotos) }}" class="flex-1 text-center py-2 text-sm" style="color:#4e5e72!important;text-decoration:none">Fotos</a>
+            <a href="{{ route('admin.books.edit', $b->idbookfotos) }}" class="flex-1 text-center py-2 text-sm" style="color:#4e5e72!important;text-decoration:none">Editar</a>
             <form action="{{ route('admin.books.destroy', $b->idbookfotos) }}" method="POST" class="flex-1" onsubmit="return confirm('¿Eliminar este book?')">
                 @csrf @method('DELETE')
-                <flux:button type="submit" size="sm" variant="ghost" class="w-full justify-center rounded-none text-red-600">Eliminar</flux:button>
+                <button type="submit" class="w-full text-center py-2 text-sm" style="color:#dc2626!important;background:none;border:none;cursor:pointer">Eliminar</button>
             </form>
         </div>
     </div>
