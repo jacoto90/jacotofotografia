@@ -1,0 +1,125 @@
+# JACOTO FOTOGRAFÍA — Complete Project Context
+
+## Overview
+Modern Laravel 13 + Flux UI rebuild of a legacy PHP photography portfolio site for Hostalia shared hosting (FTP only, no SSH). Public-facing gallery site + password-protected client photo books + admin panel with CRUD, photo upload, and email notifications.
+
+## Tech Stack
+- **Backend**: Laravel 13 (PHP 8.3), MySQL (prod), SQLite (local)
+- **Frontend**: Flux UI v2 (Tailwind-based components), Vite
+- **Auth**: Laravel built-in Auth (session-based)
+- **Storage**: Filesystem (local `storage/app/public`), symlinked via `public/storage`
+- **Deployment**: FTP upload (no SSH available), `.env` excluded from deploy, manual upload
+
+## URLs
+- **Site**: https://jacotofotografia.com
+- **Admin**: https://jacotofotografia.com/admin/login
+- **Auth**: admin@jacoto.es / JacotoAdmin2025
+- **GitHub**: https://github.com/jacoto90/jacotofotografia.git
+
+## Hosting (Hostalia)
+- **FTP**: 82.194.68.104 / user-10840863 / cacatua2026
+- **DB Host**: PMYSQL186.dns-servicio.com:3306
+- **DB Name**: 10840863_dbxhniulzyygl5
+- **DB User**: jose
+- **DB Pass**: 47@7olE5g
+- **Doc Root**: /var/www/vhosts/41173422.servicio-online.net/jacotofotografia.com/public/
+- **.env location**: /var/www/vhosts/41173422.servicio-online.net/jacotofotografia.com/.env
+- **PHP**: 8.3.30 (platform_check.php modified to allow 8.3)
+
+## Key Config
+- APP_DEBUG=false (production)
+- SESSION_DRIVER=cookie (avoids Herd/Windows session write issues)
+- APP_URL=https://jacotofotografia.com
+- Root .htaccess rewrites to public/
+
+## Database
+- Tables: bookfotos, clientes, users, visitantes, settings
+- All tables created via manual PHP script (Artisan migrate fails with "table already exists")
+- visitantes table has gestionado column (tinyint, default 0)
+
+## Project Structure
+```
+jacotofotografia/
+├── app/Http/Controllers/
+│   ├── PageController.php    # Public pages: home, clientes, bookAccess, bookDownload, contacto, jacoto
+│   └── AdminController.php   # Admin: dashboard, CRUD books/clientes, mensajes, settings, photos
+├── resources/views/
+│   ├── layouts/
+│   │   ├── app.blade.php     # Public layout (navbar + footer)
+│   │   └── admin.blade.php   # Admin layout (Flux sidebar + light mode override)
+│   ├── admin/
+│   │   ├── login.blade.php
+│   │   ├── dashboard.blade.php
+│   │   ├── books/index.blade.php, show.blade.php, create.blade.php, edit.blade.php
+│   │   ├── clientes/index.blade.php, create.blade.php, edit.blade.php
+│   │   ├── mensajes.blade.php
+│   │   └── settings.blade.php
+│   ├── home.blade.php
+│   ├── clientes.blade.php     # Guest gallery (password-protected book access)
+│   ├── book.blade.php         # Photo book viewer (after password) with download
+│   ├── jacoto.blade.php
+│   ├── contacto.blade.php
+│   └── components/ (navbar, footer)
+├── public/
+│   ├── build/                 # Compiled Vite assets
+│   ├── storage/ → storage/app/public (symlink)
+│   ├── {nombrebook}/          # 12 book photo folders (FTP originals)
+│   ├── carrusel0-3/           # Homepage carousel images
+│   └── img/logoJacoto.png
+├── storage/app/public/books/{id}/  # Admin-uploaded photos
+├── routes/web.php
+├── database/
+│   ├── database.sqlite        # Local dev DB
+│   └── migrations/
+├── .env                       # Excluded from deploy
+└── docs/prompt.txt            # This file
+```
+
+## Routes
+- `/` — Homepage
+- `/clientes` — Guest gallery (book cards with password modal)
+- `/book/access` — POST: validate password, show book photos
+- `/book/download` — POST: create ZIP of selected photos
+- `/contacto` — Contact page
+- `/jacoto` — Personal/Jacoto page
+- `/admin/login` — Admin login (throttled: 5/60min)
+- `/admin/` — Dashboard (auth)
+- `/admin/books/*` — CRUD + photo management
+- `/admin/clientes/*` — CRUD
+- `/admin/mensajes` — Messages from visitantes table
+- `/admin/settings` — SMTP + notification config
+
+## Covers
+- FTP books: `public/{nombrebook}/foto_portada.jpg`
+- Uploaded books: `storage/app/public/books/{id}/foto_portada.jpg`
+- Cache busting: `?v={{ filemtime(...) }}`
+- Setting cover: POST `/admin/books/{id}/photos/cover` with `photo` and `source` fields
+
+## Book Passwords (client access)
+- @boda, @golf, @tania, @seo, @dani, @marc, @mma, @santjordi, @sticnow
+
+## Key Decisions
+- **No @fluxAppearance**: Force light mode via localStorage + JS, CSS :root{color-scheme:light}
+- **No Variant="ghost"**: All admin buttons replaced with explicit HTML + inline styles
+- **Data migration**: SQLite → MySQL via PHP script with hardcoded INSERTs
+- **Photo paths**: FTP photos in public/{nombrebook}/ (not resources/oldweb/)
+- **Mail config**: DB settings table (not .env) so admin can configure via UI
+
+## Known Issues
+- Artisan migrate fails on Hostalia (table already exists) — use manual schema scripts
+- FTP directory names with accented chars get corrupted by PowerShell — use PHP or rename without accents
+- Browser caching of cover images — solved with ?v=filemtime()
+
+## Deployment
+1. `npm run build` locally
+2. Zip project (exclude .env, vendor, node_modules, storage)
+3. Upload via FTP to site root
+4. Extract via deploy.php or manual PHP unzip
+5. Upload .env separately
+6. Upload public/build/ separately
+7. Ensure public/storage symlink exists
+
+## Colors
+- Green: #c8e7d8
+- Gray: #4e5e72
+- Orange: #FC9B67
